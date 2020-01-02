@@ -1,0 +1,35 @@
+.showInfo {
+  position: relative;
+  .itemTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #404040;
+  }
+  .itemContent {
+    width: 160px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    /* 单行文本 溢出打点三件套 */
+    /* 不换行 */
+    white-space: nowrap;
+    /* 超出宽度隐藏 */
+    overflow: hidden;
+    /* 超出文字打点 */
+    text-overflow: ellipsis;
+    font-weight: 400;
+  }
+  .goodsbtn{
+    // position: absolute;
+    right: 5px;
+    font-size: 14px;
+  }
+  .itemImg{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50% 50%;
+  }
+}

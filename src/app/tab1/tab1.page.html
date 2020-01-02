@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="title">
+      淘二淘
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-img src="assets/shapes.svg"></ion-img>
+    <ion-card-header>
+      <ion-card-subtitle>公告</ion-card-subtitle>
+      <ion-card-title>火热聚物榜</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list class="hot" *ngFor="let item of pubList">
+        <ion-item class="hotProduce"><span class="hotProduceTitle">{{item.pubsName}}</span>价格区间:<span
+            class="hotProducePrice">{{item.pubsPrice}}￥</span></ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-searchbar id="serach" placeholder="搜索请输入：elegoods、bookgoods" animated [(ngModel)]="keywords"
+    (keyup)="getItems($event)">
+  </ion-searchbar>
+  <div *ngIf="flag">
+    <ion-card *ngFor="let goods of goodsList;let key=index">
+      <ion-card-content>
+        <ion-list class="showInfo">
+          <div class="itemTitle">{{goods.goodsName}}<br />价格：{{goods.goodsPrice}}￥<br />类别：{{goods.goodsCate}}</div>
+          <div class="itemContent">商品详情:&nbsp;&nbsp;{{goods.goodsContent}}</div>
+          <ion-button [routerLink]="['/goodsdetails',goods._id]" class="goodsbtn" fill="clear">查看商品详情</ion-button>
+          <div class="itemImg"><img [src]="goods.goodsImgSmall"></div>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="!flag">
+    <ion-card *ngFor="let goods of newgoodsList;let key=index">
+      <ion-card-content>
+        <ion-list class="showInfo">
+          <div class="itemTitle">{{goods.goodsName}}<br />价格：{{goods.goodsPrice}}￥<br />类别：{{goods.goodsCate}}</div>
+          <div class="itemContent">商品详情:&nbsp;&nbsp;{{goods.goodsContent}}</div>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

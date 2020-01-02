@@ -1,0 +1,20 @@
+<div class="contain">
+  <ion-item>
+    <ion-label position="floating">评论区</ion-label>
+    <ion-textarea placeholder="请输入不超过15个字的评论内容" rows="2" [(ngModel)]="comment" class="textArea"></ion-textarea>
+    <!-- <ion-alert-controller></ion-alert-controller> -->
+    <ion-button slot="end" fill="clear" (click)="addComment()">发表评论</ion-button>
+  </ion-item>
+  <ion-list *ngFor="let item of goodsComments" class="list">
+    <ion-item class="listItem">
+      <ion-avatar slot="start">
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-avatar>
+      <ion-label class="title">匿名用户</ion-label>
+      <ion-label>{{item.goodsTime | date:'yyyy-MM-dd'}}</ion-label>
+    </ion-item>
+    <ion-item class="listItem1">
+      <ion-textarea>评论内容：{{item.goodsComments}}</ion-textarea>
+    </ion-item>
+  </ion-list>
+</div>

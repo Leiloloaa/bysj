@@ -1,0 +1,33 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title">登录</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <form onsubmit="processForm(event)">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">用户名： <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required type="text" oninput="handleFirstNameValue(event)" maxlength="8" minlength="2"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">密码： <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required type="password" oninput="handleLastNameValue(event)" maxlength="12" minlength="6"></ion-input>
+      </ion-item>
+    </ion-list>
+    <div class="ion-padding">
+      <ion-buttons slot="end" class="btns">
+        <ion-button type="submit" class="ion-no-margin1" >登录</ion-button>
+        <ion-button type="submit" class="ion-no-margin2" [routerLink]="['/account']">注册</ion-button>
+      </ion-buttons>
+     
+    </div>
+  </form>
+</ion-content>

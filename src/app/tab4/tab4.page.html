@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="title">会员中心</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-avatar>
+        <img src="https://gravatar.com/avatar">
+      </ion-avatar>
+      <ion-label class="greeting">游客 下午好！</ion-label>
+      <ion-buttons>
+        <ion-button fill='clear' [routerLink]="['/login']">
+          登录
+        </ion-button>
+        <ion-button fill='clear' [routerLink]="['/account']">
+          注册
+        </ion-button>
+      </ion-buttons>
+    </ion-list-header>
+    <ion-item [routerLink]="['/myorder']">我的订单</ion-item>
+    <ion-item [routerLink]="['/myinfo']">我的信息</ion-item>
+    <ion-item [routerLink]="['/updatapsd']">修改密码</ion-item>
+    <ion-item [routerLink]="['/updataPsd']">退出</ion-item>
+  </ion-list>
+
+  <ion-button color="primary" expand="block" [routerLink]="['/addgoods']">
+    发布商品
+  </ion-button>
+</ion-content>

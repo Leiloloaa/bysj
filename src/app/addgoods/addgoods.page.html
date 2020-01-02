@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title">发布商品</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="addgoods()">
+    <ion-list>
+      <ion-item class="iSize">
+        <ion-label position="stacked">商品名称：<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="text" placeholder="请输入商品名称" [(ngModel)]="goodsName" name="goodsName"></ion-input>
+      </ion-item>
+      <ion-item class="iSize">
+        <ion-label position="stacked">价格：<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="text" placeholder="单位为元" [(ngModel)]="goodsPrice" name="goodsPrice"></ion-input>
+      </ion-item>
+      <ion-item class="iSize">
+        <ion-label>商品分类</ion-label>
+        <ion-select okText="确定" cancelText="取消" [(ngModel)]="value" name="value">
+          <ion-select-option value="elegoods">电子商品</ion-select-option>
+          <ion-select-option value="lifegoods">生活用品</ion-select-option>
+          <ion-select-option value="bookgoods">二手图书</ion-select-option>
+          <ion-select-option value="othergoods">其它商品</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="iSize">
+        <ion-label position="stacked">商品描述：</ion-label>
+        <ion-textarea placeholder="30字以内" maxlength="30" [(ngModel)]="goodsContent" name="goodsContent">
+        </ion-textarea>
+      </ion-item>
+      <ion-item class="iSize">
+        <ion-label position="stacked">商品展示图片：<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="text" placeholder="请输入网络地址，图片大小为300*220像素" [(ngModel)]="goodsImg" name="goodsName"></ion-input>
+      </ion-item>
+      <ion-item class="iSize">
+        <ion-label position="stacked">商品缩略图：<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="text" placeholder="请输入网络地址，图片大小为120*120像素" [(ngModel)]="goodsImgSmall" name="goodsName"></ion-input>
+      </ion-item>
+      <div class="ion-padding">
+        <ion-button expand="block" type="submit" class="ion-no-margin">发布商品</ion-button>
+      </div>
+    </ion-list>
+  </form>
+</ion-content>

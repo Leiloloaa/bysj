@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title">商品详情</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="contain">
+  <ion-list class="list">
+    <ion-item>
+      <ion-img  class="goodsImg" [src]="good.goodsImg"></ion-img>
+    </ion-item>
+    <ion-item class="listItem">
+      <ion-label>商品名称：{{good.goodsName}}</ion-label>
+    </ion-item>
+    <ion-item class="listItem">
+      <ion-label>商品价格：{{good.goodsPrice}}￥</ion-label>
+    </ion-item>
+    <ion-item class="listItem">
+      <ion-label>商品类别：{{good.goodsCate}}</ion-label>
+    </ion-item>
+    <ion-item class="listItem">
+      <ion-label>商品描述：{{good.goodsContent}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-button color="success" expand="block"  [routerLink]="['/tabs/tab3']" [queryParams]="{id:good._id}">
+    同学我要了
+  </ion-button>
+  <app-comments [goodsComments]="good.goodsComments"></app-comments>
+</ion-content>

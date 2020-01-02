@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title">注册</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <form (ngSubmit)="addUsers()">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">用户名：<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="userName" name="userName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">密码：<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="password" [(ngModel)]="userPsd" name="userPsd"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">确认密码：<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input type="password" ></ion-input>
+      </ion-item>
+
+      <ion-item class="iSize">
+        <ion-label>性别</ion-label>
+        <ion-select placeholder="请选择性别" [(ngModel)]="value" name="value">
+          <ion-select-option value="0">男</ion-select-option>
+          <ion-select-option value="1">女</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+
+      <ion-item class="iSize">
+        <ion-label position="stacked">收获地址：<ion-text color="danger">*</ion-text></ion-label>
+        <ion-input placeholder="您的收获地址" [(ngModel)]="address" name="address"></ion-input>
+        <ion-input placeholder="您的学校" [(ngModel)]="school" name="school"></ion-input>
+      </ion-item>
+
+      <ion-item class="iSize">
+        <ion-label position="stacked">个人简介</ion-label>
+        <ion-textarea placeholder="输入您的个人简介，让别人更好的了解您！(不超过30字)" maxlength="30" [(ngModel)]="userContent" name="userContent"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" class="ion-no-margin">注册</ion-button>
+    </div>
+  </form>
+</ion-content>

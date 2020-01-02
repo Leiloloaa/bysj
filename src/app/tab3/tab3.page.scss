@@ -1,0 +1,47 @@
+.icContent {
+  padding: 0 !important;
+}
+.shops {
+  position: relative;
+  height: 120px;
+  .cBox {
+    padding: 0 !important;
+    position: absolute;
+    top: 37px;
+  }
+  .shopImg {
+    position: absolute;
+    left: 50px;
+    top: 10px;
+    width: 100px;
+    height: 100px;
+    // border-radius: 50px;
+  }
+  .shop {
+    position: absolute;
+    left: 170px;
+    top: 10px;
+    width: 150px;
+    height: 125px;
+    .shopTitle {
+      width: 100%;
+      display: inline-block;
+      text-align: center;
+      font-weight: 900;
+    }
+    .shopPrice {
+      display: inline-block;
+      margin-top: 5px;
+      font-weight: 900;
+      color: red;
+      position: absolute;
+      right: 45px;
+      top: 30px;
+    }
+    .shopBtn {
+      position: absolute;
+      right: 15px;
+      bottom: 25px;
+    }
+  }
+}
