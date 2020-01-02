@@ -7,6 +7,7 @@
 </ion-header>
 
 <ion-content>
+  <p *ngIf="flag" class="flag">抱歉！您的购物车空空如也!<br /><br />请你再逛逛！</p>
   <ion-card *ngFor="let good of goods">
     <ion-item>
       <ion-card-content class="icContent">

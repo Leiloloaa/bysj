@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
+  public flag: boolean = false;
   public good: any[] = [];
   public goods: any[] = [];
   public selected: boolean = false;
@@ -21,6 +22,9 @@ export class Tab3Page {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.renderShopCar()
+    if (this.goods.length == 0) {
+      this.flag = true
+    }
   }
   renderShopCar() {
     this.route.queryParams.subscribe((data) => {

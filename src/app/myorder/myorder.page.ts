@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./myorder.page.scss'],
 })
 export class MyorderPage implements OnInit {
+  public flag: boolean = false;
   public good: any[] = [];
   public goods: any[] = [];
   constructor(public route: ActivatedRoute, public http: HttpClient) { }
@@ -18,6 +19,9 @@ export class MyorderPage implements OnInit {
       // console.log(JSON.stringify(data));
       this.requestContent(data.id);
     })
+    if (this.goods.length == 0) {
+      this.flag = true
+    }
   }
   requestContent(id) {
     let api = 'http://localhost:3001/goodsdetails/' + id
@@ -42,9 +46,9 @@ export class MyorderPage implements OnInit {
     //       console.log('购物车中有此商品');
     //     } else {
     //       console.log('添加商品成功');
-          this.goods.push(good)
-      //   }
-      // }
+    this.goods.push(good)
+    //   }
+    // }
     // }
   }
 

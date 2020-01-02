@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>updatapsd</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title">修改密码</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label position="stacked">用户名：<ion-text color="danger">*</ion-text>
+    </ion-label>
+    <ion-input type="text" [(ngModel)]="userName" name="userName"></ion-input>
+  </ion-item>
 
+  <ion-item>
+    <ion-label position="stacked">密码：<ion-text color="danger">*</ion-text>
+    </ion-label>
+    <ion-input type="password" [(ngModel)]="userPsd" name="userPsd"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">确认密码：<ion-text color="danger">*</ion-text>
+    </ion-label>
+    <ion-input type="password"></ion-input>
+  </ion-item>
 </ion-content>
