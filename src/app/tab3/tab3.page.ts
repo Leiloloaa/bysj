@@ -22,7 +22,7 @@ export class Tab3Page {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.renderShopCar()
-    if (this.goods.length == 0) {
+    if (!this.goods) {
       this.flag = true
     }
   }

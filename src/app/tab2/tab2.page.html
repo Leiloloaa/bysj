@@ -12,14 +12,14 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
+  <ion-item lines="full">
     <ion-label position="floating">留言区</ion-label>
     <ion-textarea [(ngModel)]="lyContent" placeholder="请输入不超过30个字的留言内容"></ion-textarea>
     <!-- <ion-alert-controller></ion-alert-controller> -->
     <ion-button slot="end" fill="clear" (click)="addComment()">发表评论</ion-button>
   </ion-item>
   <div *ngFor="let item of ly">
-    <ion-item class="ly">
+    <ion-item class="ly" lines="full">
       <ion-label position="stacked" class="lyName">发布者：{{item.userName}}
         <div class="lyTime">发表时间：{{item.lyTime | date:'yyyy-MM-dd HH:mm'}}</div>
       </ion-label>

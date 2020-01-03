@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -25,10 +25,19 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-
-.title{
+.title {
   color: #f40;
 }
-.iSize{
+
+.iSize {
   font-size: 13.5px;
+}
+
+// toast 自定义 css
+.mytoast {
+  width: 180px;
+  // margin:0 auto;
+  text-align: center;
+  left: 50%;
+  margin-left: -90px;
 }

@@ -2,7 +2,6 @@
   <ion-item>
     <ion-label position="floating">评论区</ion-label>
     <ion-textarea placeholder="请输入不超过15个字的评论内容" rows="2" [(ngModel)]="comment" class="textArea"></ion-textarea>
-    <!-- <ion-alert-controller></ion-alert-controller> -->
     <ion-button slot="end" fill="clear" (click)="addComment()">发表评论</ion-button>
   </ion-item>
   <ion-list *ngFor="let item of goodsComments" class="list">

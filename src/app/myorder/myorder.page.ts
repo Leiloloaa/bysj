@@ -19,7 +19,7 @@ export class MyorderPage implements OnInit {
       // console.log(JSON.stringify(data));
       this.requestContent(data.id);
     })
-    if (this.goods.length == 0) {
+    if (!this.goods.length) {
       this.flag = true
     }
   }

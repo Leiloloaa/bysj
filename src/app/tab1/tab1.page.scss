@@ -39,17 +39,19 @@
     text-overflow: ellipsis;
     font-weight: 400;
   }
-  .goodsbtn{
+  .goodsbtn {
     // position: absolute;
     right: 5px;
     font-size: 14px;
   }
-  .itemImg{
+  .itemImg {
     position: absolute;
     right: 0;
     top: 5px;
     width: 120px;
     height: 120px;
-    border-radius: 50% 50%;
+    img {
+      border-radius: 15px 15px 15px 15px;
+    }
   }
 }

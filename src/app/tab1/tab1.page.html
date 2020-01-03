@@ -30,18 +30,23 @@
         <ion-list class="showInfo">
           <div class="itemTitle">{{goods.goodsName}}<br />价格：{{goods.goodsPrice}}￥<br />类别：{{goods.goodsCate}}</div>
           <div class="itemContent">商品详情:&nbsp;&nbsp;{{goods.goodsContent}}</div>
-          <ion-button [routerLink]="['/goodsdetails',goods._id]" class="goodsbtn" fill="clear">查看商品详情</ion-button>
-          <div class="itemImg"><img [src]="goods.goodsImgSmall"></div>
+          <ion-button [routerLink]="['/goodsdetails',goods._id]" class="goodsbtn" fill="clear"
+            (click)="presentLoading()">查看商品详情</ion-button>
+          <div class="itemImg"><img [src]="goods.goodsImgSmall" /></div>
         </ion-list>
       </ion-card-content>
     </ion-card>
   </div>
+  
   <div *ngIf="!flag">
     <ion-card *ngFor="let goods of newgoodsList;let key=index">
       <ion-card-content>
         <ion-list class="showInfo">
           <div class="itemTitle">{{goods.goodsName}}<br />价格：{{goods.goodsPrice}}￥<br />类别：{{goods.goodsCate}}</div>
           <div class="itemContent">商品详情:&nbsp;&nbsp;{{goods.goodsContent}}</div>
+          <ion-button [routerLink]="['/goodsdetails',goods._id]" class="goodsbtn" fill="clear"
+            (click)="presentLoading()">查看商品详情</ion-button>
+          <div class="itemImg"><img [src]="goods.goodsImgSmall"></div>
         </ion-list>
       </ion-card-content>
     </ion-card>

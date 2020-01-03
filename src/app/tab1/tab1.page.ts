@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConnectService } from '../services/connect.service';
+import { LoadingController } from '@ionic/angular';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class Tab1Page implements OnInit {
   public flag: boolean = true;
   public pubList: any[];
   public domain: string;
-  constructor(public connect: ConnectService) {
+  constructor(public connect: ConnectService, public loadingController: LoadingController) {
     this.domain = this.connect.domain
   }
   ngOnInit(): void {
@@ -49,5 +50,13 @@ export class Tab1Page implements OnInit {
         })
       }
     }
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'loading...',
+      duration: 400
+    });
+    await loading.present();
   }
 }
