@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./myorder.page.scss'],
 })
 export class MyorderPage implements OnInit {
-  public flag: boolean = false;
+  public flag: boolean = true;
   public good: any[] = [];
   public goods: any[] = [];
   constructor(public route: ActivatedRoute, public http: HttpClient) { }
@@ -19,9 +19,6 @@ export class MyorderPage implements OnInit {
       // console.log(JSON.stringify(data));
       this.requestContent(data.id);
     })
-    if (!this.goods.length) {
-      this.flag = true
-    }
   }
   requestContent(id) {
     let api = 'http://localhost:3001/goodsdetails/' + id
@@ -29,7 +26,7 @@ export class MyorderPage implements OnInit {
       this.good = data;
       // console.log(this.good);
       this.addMyOrder(this.good);
-
+      this.flag = false
     })
   }
   addMyOrder(good) {

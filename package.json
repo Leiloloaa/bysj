@@ -1,7 +1,7 @@
 {
   "name": "myApp",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "cl",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
