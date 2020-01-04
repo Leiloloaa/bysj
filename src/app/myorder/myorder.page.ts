@@ -20,15 +20,17 @@ export class MyorderPage implements OnInit {
       this.requestContent(data.id);
     })
   }
+
   requestContent(id) {
     let api = 'http://localhost:3001/goodsdetails/' + id
     this.http.get(api).subscribe((data: any) => {
       this.good = data;
-      // console.log(this.good);
+      console.log(this.good);
       this.addMyOrder(this.good);
       this.flag = false
     })
   }
+
   addMyOrder(good) {
     // goods 是空的情况 直接加进去
     // if (this.goods.length == 0) {
@@ -47,6 +49,17 @@ export class MyorderPage implements OnInit {
     //   }
     // }
     // }
+    this.postOrder(good)
   }
 
+  // 提交订单
+  // 问题：获取不到 goodsName goodsPrice
+  postOrder(good) {
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
+    let api = "http://localhost:3001/api/orders";
+    this.http.post(api, { "usersName": "小磊", "goodsName": good.goodsName, "goodsPrice": good.goodsPrice, "address": "江西省南昌市青山湖区北京东路339号", "goodsStatu": "true", "goodsDeliver": "false", "__v": 0 }, httpOptions)
+      .subscribe((response) => {
+        console.log(response);
+      })
+  }
 }

@@ -12,9 +12,10 @@
   <ion-card *ngFor="let good of goods;let key=index">
     <ion-card-content>
       <ion-list class="showInfo">
-        <div class="title">订单状态：未支付</div><br />
-        <div class="itemTitle">{{good.goodsName}}<br />价格：{{good.goodsPrice}}￥<br /></div>
-        <ion-button class="goodsbtn" fill="clear">删除此商品</ion-button>
+        <div class="title1">订单状态：已支付</div><br />
+        <div class="title1">发货状态：未发货</div><br />
+        <div class="itemTitle"><span>商品名：{{good.goodsName}}</span><br /><span>价格：{{good.goodsPrice}}￥</span><br /></div>
+        <ion-button class="goodsbtn" fill="clear">删除此订单</ion-button>
         <div class="itemImg"><img [src]="good.goodsImgSmall"></div>
       </ion-list>
     </ion-card-content>

@@ -1,5 +1,8 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="new">
+    <ion-buttons slot="start" class="btnback"> 
+      <ion-menu-button menu="menu"></ion-menu-button>
+    </ion-buttons>
     <ion-title class="title">
       淘二淘
     </ion-title>
@@ -37,6 +40,11 @@
       </ion-card-content>
     </ion-card>
   </div>
+
+  <ion-infinite-scroll threshold="10%" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载中...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
   <div *ngIf="!flag">
     <ion-card *ngFor="let goods of newgoodsList;let key=index">

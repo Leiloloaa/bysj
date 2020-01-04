@@ -1,5 +1,8 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="new">
+    <ion-buttons slot="start" class="btnback">
+      <ion-back-button defaultHref="/tabs/tab1" text="返回"></ion-back-button>
+    </ion-buttons>
     <ion-title class="title">
       购物车
     </ion-title>
@@ -12,7 +15,7 @@
     <ion-item>
       <ion-card-content class="icContent">
         <div class="shops">
-          <ion-checkbox slot="start"  class="cBox" (click)="getId($event,good.goodsName)"></ion-checkbox>
+          <ion-checkbox slot="start" class="cBox" (click)="getId($event,good.goodsName)"></ion-checkbox>
           <ion-img class="shopImg" [src]="good.goodsImgSmall"></ion-img>
           <div class="shop">
             <span class="shopTitle">{{good.goodsName}}</span>
@@ -26,6 +29,7 @@
     </ion-item>
   </ion-card>
   <div class="ion-padding">
-    <ion-button expand="block" class="ion-no-margin" (click)="sumGoods()" [routerLink]="['/myorder']" [queryParams]="{id:good._id}">结算商品</ion-button>
+    <ion-button expand="block" class="ion-no-margin" (click)="sumGoods()" [routerLink]="['/myorder']"
+      [queryParams]="{id:good._id}">结算商品</ion-button>
   </div>
 </ion-content>

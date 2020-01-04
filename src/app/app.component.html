@@ -1,3 +1,33 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu menuId="menu" side="start" type="push">
+    <ion-header>
+      <ion-toolbar color="default">
+        <ion-title>菜单</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content color="light">
+      <ion-list lines="full">
+        <!-- 加了toggle之后 点击空白处 侧边栏就会消失 -->
+        <ion-menu-toggle>
+          <ion-item [routerLink]="['/tabs/tab2']">
+            <ion-icon slot="start" name="chatboxes" color="warning"></ion-icon>
+            <ion-label>留言板</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item [routerLink]="['/tabs/tab3']">
+            <ion-icon slot="start" name="cart" color="danger"></ion-icon>
+            <ion-label>购物车</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item [routerLink]="['tabs//tab4']">
+            <ion-icon slot="start" name="contacts" color="secondary"></ion-icon>
+            <ion-label>个人中心</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet main></ion-router-outlet>
 </ion-app>

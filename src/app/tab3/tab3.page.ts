@@ -82,6 +82,7 @@ export class Tab3Page {
       console.log('请您勾选商品');
     }
   }
+
   delSelecteds() {
     // 问题 根据selectedsId 数组中的值 删除数组对象中一样 id 的值
     // 是否要用到生命周期
