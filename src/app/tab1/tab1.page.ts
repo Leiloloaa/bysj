@@ -29,6 +29,8 @@ export class Tab1Page implements OnInit {
       // console.log(response);
       this.pubList = response;
     })
+
+    this.getGoodsList()
   }
 
   // 获取数据 
@@ -41,18 +43,18 @@ export class Tab1Page implements OnInit {
     })
   }
 
-  loadData(event) {
-    setTimeout(() => {
-      this.getGoodsList();
-      event.target.complete(); // 此次获取已结束 可以开始下次获取
+  // loadData(event) {
+  //   setTimeout(() => {
+  //     // this.getGoodsList();
+  //     event.target.complete(); // 此次获取已结束 可以开始下次获取
 
-      // 判断如果大于goodsList的长度 就停用 这个是根据服务器的数据来设定的
-      // 只展示最多30条数据
-      // if (this.goodsList.length > 30) {
-      //   event.target.disabled = true;
-      // }
-    }, 500);
-  }
+  //     // 判断如果大于goodsList的长度 就停用 这个是根据服务器的数据来设定的
+  //     // 只展示最多30条数据
+  //     // if (this.goodsList.length > 30) {
+  //     //   event.target.disabled = true;
+  //     // }
+  //   }, 500);
+  // }
 
   getItems(e) {
     this.newgoodsList = [];
@@ -72,11 +74,11 @@ export class Tab1Page implements OnInit {
     }
   }
 
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      message: 'loading...',
-      duration: 400
-    });
-    await loading.present();
-  }
+  // async presentLoading() {
+  //   const loading = await this.loadingController.create({
+  //     message: 'loading...',
+  //     duration: 400
+  //   });
+  //   await loading.present();
+  // }
 }

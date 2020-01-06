@@ -18,40 +18,86 @@
     }
   }
 }
-.showInfo {
-  position: relative;
-  .itemTitle {
-    font-size: 16px;
-    font-weight: 600;
-    color: #f40;
+.card {
+  width: 155px;
+  float: left;
+  margin-bottom: -5px;
+  .showInfo {
+    .itemInfo {
+      font-size: 14px;
+      h2 {
+        font-weight: 800;
+        /* 单行文本 溢出打点三件套 */
+        /* 不换行 */
+        white-space: nowrap;
+        /* 超出宽度隐藏 */
+        overflow: hidden;
+        /* 超出文字打点 */
+        text-overflow: ellipsis;
+      }
+      p > span {
+        width: 110px;
+        display: inline-block;
+        /* 单行文本 溢出打点三件套 */
+        /* 不换行 */
+        white-space: nowrap;
+        /* 超出宽度隐藏 */
+        overflow: hidden;
+        /* 超出文字打点 */
+        text-overflow: ellipsis;
+      }
+    }
   }
-  .itemContent {
-    width: 160px;
-    margin-top: 5px;
-    box-sizing: border-box;
-    font-size: 14px;
-    /* 单行文本 溢出打点三件套 */
-    /* 不换行 */
-    white-space: nowrap;
-    /* 超出宽度隐藏 */
-    overflow: hidden;
-    /* 超出文字打点 */
-    text-overflow: ellipsis;
-    font-weight: 400;
+  .itemShow {
+    .itemImg {
+      img {
+        width: 120px;
+        height: 120px;
+        display: block;
+        border-radius: 5px;
+      }
+    }
   }
-  .goodsbtn {
-    // position: absolute;
-    right: 5px;
-    font-size: 14px;
+}
+
+.card2 {
+  display: flex;
+  justify-content: space-between;
+  .showInfo {
+    width: 180px;
+    line-height: 2;
+    .itemInfo {
+      font-size: 14px;
+      h2 {
+        font-weight: 800 !important;
+        /* 单行文本 溢出打点三件套 */
+        /* 不换行 */
+        white-space: nowrap;
+        /* 超出宽度隐藏 */
+        overflow: hidden;
+        /* 超出文字打点 */
+        text-overflow: ellipsis;
+      }
+      p > span {
+        width: 160px;
+        display: inline-block;
+        /* 单行文本 溢出打点三件套 */
+        /* 不换行 */
+        white-space: nowrap;
+        /* 超出宽度隐藏 */
+        overflow: hidden;
+        /* 超出文字打点 */
+        text-overflow: ellipsis;
+      }
+    }
   }
-  .itemImg {
-    position: absolute;
-    right: 0;
-    top: 5px;
-    width: 120px;
-    height: 120px;
+  .itemShow {
+    flex: 1;
     img {
-      border-radius: 15px 15px 15px 15px;
+      width: 120px;
+      height: 120px;
+      display: block;
+      border-radius: 5px;
     }
   }
 }
