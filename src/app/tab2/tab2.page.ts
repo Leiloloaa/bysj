@@ -28,9 +28,20 @@ export class Tab2Page {
 
     await alert.present();
   }
+
+  async inFoAlert() {
+    const alert = await this.alertController.create({
+      header: '提示',
+      message: '您的留言未填写，请您填写！',
+      buttons: ['确认']
+    });
+
+    await alert.present();
+  }
   // 增加评论
   addComment() {
     if (!this.lyContent) {
+      this.inFoAlert()
       return true
     }
     this.presentAlert()

@@ -1,6 +1,7 @@
 .contain {
   width: 100%;
   .list {
+    width: 100%;
     ion-item {
       line-height: 3;
     }
@@ -14,7 +15,7 @@
     .listItem {
       font-size: 15px;
       color: #404040;
-      line-height: 3;
+      line-height: 2;
     }
     .goodsImg {
       display: inline-block;
@@ -23,3 +24,7 @@
     }
   }
 }
+// ion-tabs {
+//   position: fixed;
+//   bottom: 0;
+// }

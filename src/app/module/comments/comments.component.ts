@@ -17,6 +17,7 @@ export class CommentsComponent implements OnInit {
   }
   addComment() {
     if (!this.comment) {
+      this.inFoToast()
       return false
     } else {
       const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
@@ -25,6 +26,7 @@ export class CommentsComponent implements OnInit {
         .subscribe((response) => {
           console.log('评论已提交');
         })
+      this.comment=''
       this.presentToast()
     }
   }
@@ -32,6 +34,17 @@ export class CommentsComponent implements OnInit {
   async presentToast() {
     const toast = await this.toastController.create({
       message: '您的评论已提交',
+      duration: 2000,
+      position:'middle',
+      color: 'medium',
+      cssClass:'mytoast' // 注意写自定义样式 要写在全局 不然不会生效
+    });
+    toast.present();
+  }
+
+  async inFoToast() {
+    const toast = await this.toastController.create({
+      message: '请输入评论内容！',
       duration: 2000,
       position:'middle',
       color: 'medium',

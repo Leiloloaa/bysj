@@ -15,17 +15,32 @@
     <ion-item class="item">
       <ion-label>用户名：</ion-label>
     </ion-item>
-    <ion-item class="item">
-      <ion-label>性别：</ion-label>
+    <ion-item class="item1">
+      <ion-label>{{user.userName}}</ion-label>
     </ion-item>
     <ion-item class="item">
-      <ion-label>学校：</ion-label>
+      <ion-label>性别：(0：男；1：女)</ion-label>
+    </ion-item>
+    <ion-item class="item1">
+      <ion-label>{{user.userSex}}</ion-label>
+    </ion-item>
+    <ion-item class="item">
+      <ion-label>学校：(sdky：师大科院；ndky：南大科院)</ion-label>
+    </ion-item>
+    <ion-item class="item1">
+      <ion-label>{{user.school}}</ion-label>
     </ion-item>
     <ion-item class="item">
       <ion-label>收获地址：</ion-label>
     </ion-item>
+    <ion-item class="item1">
+      <ion-label>{{user.address}}</ion-label>
+    </ion-item>
     <ion-item class="item">
       <ion-label>个人简介：</ion-label>
+    </ion-item>
+    <ion-item class="item1">
+      <ion-label>{{user.userContent}}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

@@ -8,21 +8,33 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label position="stacked">用户名：<ion-text color="danger">*</ion-text>
-    </ion-label>
-    <ion-input type="text" [(ngModel)]="userName" name="userName"></ion-input>
-  </ion-item>
+  <ion-list lines="full">
 
-  <ion-item>
-    <ion-label position="stacked">密码：<ion-text color="danger">*</ion-text>
-    </ion-label>
-    <ion-input type="password" [(ngModel)]="userPsd" name="userPsd"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label position="stacked">用户名：<ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input type="text" name="userName" #username></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="stacked">确认密码：<ion-text color="danger">*</ion-text>
-    </ion-label>
-    <ion-input type="password"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label position="stacked">密码：<ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input type="password" name="userPsd" #passwordNew></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" >确认密码：<ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input type="password" #password></ion-input>
+    </ion-item>
+
+  </ion-list>
+  <ion-buttons class="btn">
+    <ion-button (click)="upDataPsd(username,passwordNew,password)" fill="clear" class="btn1">
+      确定
+    </ion-button>
+    <ion-button (click)="goback()" fill="clear" class="btn1">
+      取消
+    </ion-button>
+  </ion-buttons>
 </ion-content>

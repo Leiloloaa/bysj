@@ -60,6 +60,6 @@ export class GoodsdetailsPage implements OnInit {
       }]
     });
     await actionSheet.present();
-
   }
+
 }
