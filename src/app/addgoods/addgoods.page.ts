@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-
+import { NavController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-addgoods',
@@ -14,7 +15,7 @@ export class AddgoodsPage implements OnInit {
   public goodsContent: string;
   public goodsImg: string;
   public goodsImgSmall: string;
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, public navCtrl: NavController, public toastController: ToastController) { }
 
   ngOnInit() {
   }
@@ -27,6 +28,22 @@ export class AddgoodsPage implements OnInit {
       .subscribe((response) => {
         console.log(response);
       })
+    this.presentToast()
   }
 
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: '您的商品已发布',
+      duration: 2000,
+      position: 'middle',
+      color: 'medium',
+      cssClass: 'mytoast' // 注意写自定义样式 要写在全局 不然不会生效
+    });
+    toast.present();
+    this.goback();
+  }
+
+  goback() {
+    this.navCtrl.back()
+  }
 }
