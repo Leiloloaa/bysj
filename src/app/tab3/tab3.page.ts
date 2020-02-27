@@ -11,24 +11,28 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class Tab3Page {
   public flag: boolean = true;
-  public good: any[] = [];
+  public good: any[] = [
+    { number: 1 }
+  ];
   public goods: any[] = [];
   public selected: boolean = false;
   public selectedId: any;
   public selectedsId: any[] = [];
+  public number: number = 1;
+  public totol: number = 0; //商品总价x
   constructor(public route: ActivatedRoute, public http: HttpClient) { }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.renderShopCar()
   }
+
   renderShopCar() {
     this.route.queryParams.subscribe((data) => {
-      // console.log(JSON.stringify(data));
       this.requestContent(data.id);
     })
   }
+
+  // 查找指定 id 的商品数据
   requestContent(id) {
     let api = 'http://localhost:3001/goodsdetails/' + id
     this.http.get(api).subscribe((data: any) => {
@@ -38,6 +42,31 @@ export class Tab3Page {
       this.flag = false;
     })
   }
+
+  // 添加到购物车
+  addShopCar(good) {
+    // goods 是空的情况 直接加进去
+    if (this.goods.length === 0) {
+      console.log('购物车里没有商品的时候');
+      this.goods.push(good)
+    }
+    // goods 里有商品的时候
+    // 并且再次购买商品时 只需数量加1
+    if (this.goods.length >= 1) {
+      // for (var i = 0; i <= this.goods.length; i++) {
+      //   if(this.good == this.goods[i].goodsName){
+      //   // if (this.goods[i].goodsName) {
+      //     console.log('购物车中有此商品,不添加');
+      //     this.flag = false;
+      //     return
+      //   } 
+          console.log('添加商品成功');
+          this.goods.push(good)
+       
+      // }
+    }
+  }
+
   getId(e, goodsName) {
     console.log(!e.target.checked);
     this.selectedId = goodsName
@@ -49,29 +78,25 @@ export class Tab3Page {
       // console.log(this.selectedsId)
     }
   }
-  addShopCar(good) {
-    // goods 是空的情况 直接加进去
-    if (this.goods.length == 0) {
-      console.log('购物车里没有商品的时候');
-      this.goods.push(good)
-    }
-    // goods 里有商品的时候
-    // 问题 但重复第二个商品的时候 会有问题
-    if (this.goods.length >= 1) {
-      for (var i = 0; i < this.goods.length; i++) {
-        if (this.goods[i].goodsName == good.goodsName) {
-          console.log('购物车中有此商品');
-        } else {
-          console.log('添加商品成功');
-          this.goods.push(good)
-        }
-      }
+
+  add() {
+    if (this.number)
+      this.number = this.number + 1
+  }
+
+  del() {
+    if (this.number != 1) {
+      this.number = this.number - 1
     }
   }
+
   delGoods(id) {
     this.goods.splice(id, 1)
-    console.log('删除商品');
+    if (this.goods.length == 0) {
+      this.flag = true;
+    }
   }
+
   sumGoods() {
     if (this.selectedsId.length != 0) {
       // 被选中的都保存在 selectedsId 数组中

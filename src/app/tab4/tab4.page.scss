@@ -1,6 +1,60 @@
-.greeting{
+@import "../../style/mixin.scss";
+@import "../../style/common.scss";
+.greeting {
   font-size: 16px;
   height: 80px;
   text-align: center;
   line-height: 80px;
+}
+ion-list-header {
+  background-color: #66B1FF;
+}
+.info-data {
+  width: 100%;
+  background: $fc;
+  box-sizing: border-box;
+  ul {
+    width: 100%;
+    .info-data-link {
+      float: left;
+      width: 33.33%;
+      border-right: 1px solid #f1f1f1;
+      span {
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
+      .info-data-top {
+        @include sc(0.92rem, #333);
+        padding: 1.5rem 0 0.75rem;
+        b {
+          display: inline-block;
+          @include sc(2rem, #f90);
+          font-weight: 700;
+          line-height: 1.67rem;
+          font-family: Helvetica Neue, Tahoma;
+        }
+      }
+      .info-data-bottom {
+        @include sc(0.95rem, #666);
+        font-weight: 400;
+        padding-bottom: 0.453333rem;
+      }
+    }
+    .info-data-link:nth-of-type(2) {
+      .info-data-top {
+        b {
+          color: #ff5f3e;
+        }
+      }
+    }
+    .info-data-link:nth-of-type(3) {
+      border: 0;
+      .info-data-top {
+        b {
+          color: #6ac20b;
+        }
+      }
+    }
+  }
 }

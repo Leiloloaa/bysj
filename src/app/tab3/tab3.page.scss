@@ -25,14 +25,34 @@
   .shop {
     position: absolute;
     left: 170px;
-    top: 10px;
+    top: 20px;
     width: 150px;
     height: 125px;
+    font-size: 12px;
     .shopTitle {
       width: 100%;
       display: inline-block;
-      text-align: center;
+      position: absolute;
       font-weight: 900;
+      left: 0px;
+    }
+    .shopAmount {
+      display: inline-block;
+      margin-top: 5px;
+      font-weight: 900;
+      position: absolute;
+      left: 0px;
+      .shopAmountBtn {
+        display: inline-block;
+        text-align: center;
+        width: 18px;
+        height: 18px;
+        background-color: #409eff;
+        border-radius: 50% 50%;
+        margin-left: 5px;
+        margin-right: 5px;
+        color: #fff;
+      }
     }
     .shopPrice {
       display: inline-block;
@@ -40,13 +60,26 @@
       font-weight: 900;
       color: red;
       position: absolute;
-      right: 45px;
-      top: 30px;
+      top: 40px;
+      left: 0px;
     }
     .shopBtn {
       position: absolute;
       right: 15px;
       bottom: 25px;
+    }
+  }
+  .operate {
+    display: flex; /*设为伸缩容器*/
+    flex-flow: row; /*伸缩项目单行排列*/
+    .allSel {
+      display: inline-block;
+      width: 100px;
+    }
+    .totol {
+      display: inline-block;
+
+      flex: 1;
     }
   }
 }

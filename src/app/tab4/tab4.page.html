@@ -13,7 +13,8 @@
       <ion-avatar>
         <img src="assets/timg.jpg">
       </ion-avatar>
-      <ion-label class="greeting">{{user.userName}} 会员下午好！</ion-label>
+      <ion-label class="greeting" *ngIf="flag">游客,下午好！</ion-label>
+      <ion-label class="greeting" *ngIf="!flag">{{user.userName}} 会员下午好！</ion-label>
       <ion-buttons *ngIf="flag">
         <ion-button fill='clear' [routerLink]="['/login']">
           登录
@@ -25,6 +26,22 @@
       <div *ngIf="!flag" class="mask">
       </div>
     </ion-list-header>
+    <ion-item class="info-data" *ngIf="!flag">
+      <ul class="clear">
+        <li class="info-data-link">
+          <span class="info-data-top"><b>{{user.balance}}</b>元</span>
+          <span class="info-data-bottom">我的余额</span>
+        </li>
+        <li class="info-data-link">
+          <span class="info-data-top"><b>0</b>个</span>
+          <span class="info-data-bottom">我的优惠</span>
+        </li>
+        <li class="info-data-link">
+          <span class="info-data-top"><b>{{user.integral}}</b>分</span>
+          <span class="info-data-bottom">我的积分</span>
+        </li>
+      </ul>
+    </ion-item>
     <ion-item [routerLink]="['/myinfo']" [queryParams]="{id:user._id}">
       <ion-icon slot="start" name="contact" color="success"></ion-icon>
       <ion-label>我的信息</ion-label>

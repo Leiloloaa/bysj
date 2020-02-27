@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <p *ngIf="flag" class="flag">抱歉！您的购物车空空如也!<br /><br />请你再逛逛！</p>
+  <p *ngIf="flag" class="flag">您的购物车空空如也!<br /><br />请您再逛逛！</p>
   <ion-card *ngFor="let good of goods">
     <ion-item>
       <ion-card-content class="icContent">
@@ -18,9 +18,15 @@
           <ion-checkbox slot="start" class="cBox" (click)="getId($event,good.goodsName)"></ion-checkbox>
           <ion-img class="shopImg" [src]="good.goodsImgSmall"></ion-img>
           <div class="shop">
-            <span class="shopTitle">{{good.goodsName}}</span>
+            <span class="shopTitle">商品名称：{{good.goodsName}}</span>
             <br />
-            <span class="shopPrice">{{good.goodsPrice}}￥</span>
+            <span class="shopAmount">数量：
+              <span class="shopAmountBtn" (click)="del()">-</span>
+              <span>{{good.number}}</span>
+              <span class="shopAmountBtn" (click)="add()">+</span>
+            </span>
+            <br />
+            <span class="shopPrice">价格：{{good.goodsPrice}}￥</span>
             <br />
             <ion-button slot="end" fill="clear" class="shopBtn" (click)="delGoods(good._id)">删除</ion-button>
           </div>
@@ -28,8 +34,13 @@
       </ion-card-content>
     </ion-item>
   </ion-card>
-  <div class="ion-padding">
+  
+  <!-- <div class="operate ion-padding" >
+      <span class="allSel">全选</span>
+      <span class="totol">/span>
+  </div> -->
+  <div class="ion-padding" *ngIf="!flag">
     <ion-button expand="block" class="ion-no-margin" (click)="sumGoods()" [routerLink]="['/myorder']"
-      [queryParams]="{id:good._id}">结算商品</ion-button>
+      [queryParams]="{id:good._id}">结算商品 —— 总价：{{totol}}￥</ion-button>
   </div>
 </ion-content>
