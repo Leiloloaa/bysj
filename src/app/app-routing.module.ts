@@ -33,10 +33,16 @@ const routes: Routes = [
   {
     path: 'myinfo',
     loadChildren: () => import('./myinfo/myinfo.module').then( m => m.MyinfoPageModule)
-  },  {
+  },
+  {
     path: 'updatapsd',
     loadChildren: () => import('./updatapsd/updatapsd.module').then( m => m.UpdatapsdPageModule)
+  },  {
+    path: 'goodscate',
+    loadChildren: () => import('./goodscate/goodscate.module').then( m => m.GoodscatePageModule)
   },
+
+ 
 
   
 

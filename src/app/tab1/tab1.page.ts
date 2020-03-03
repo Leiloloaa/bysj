@@ -9,28 +9,56 @@ import { IonInfiniteScroll } from '@ionic/angular';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
+  public slidesList: any[] = []; // 轮播图
+  public slidesOpts: {} = { // 配置轮播图属性
+    speed: 400,
+    autoplay: {
+      delay: 2000,
+    },
+    loop: true // 循环轮播
+  };
+  public hotList: any[] = []; // 热门商品
+  public hotListWidth: any = 400; // 热门商品初始长度
   public goodsList: any[];
   public newgoodsList: any[] = [];
   public keywords: string;
   public flag: boolean = true;
-  public pubList: any[];
   public domain: string;
+  public hasData: boolean = false; // 判断是否有数据 显示加载按钮
   constructor(public connect: ConnectService, public loadingController: LoadingController) {
-    this.domain = this.connect.domain
+    this.domain = this.connect.domain;
+
+    for (let i = 1; i <= 3; i++) {
+      this.slidesList.push({
+        pic: 'assets/slide0' + i + '.png',
+        url: '',
+      })
+    }
+
+    for (let i = 1; i <= 9; i++) {
+      this.hotList.push({
+        pic: 'assets/0' + i + '.jpg',
+        title: '第' + i + '个'
+      })
+    }
+
+    // 计算 hotListWidth 热门商品属性
+    this.hotListWidth = this.hotList.length * 10 + 'rem';
   }
 
-  @ViewChild(IonInfiniteScroll, { static: true }) infiniteScroll: IonInfiniteScroll;
+  // @ViewChild(IonInfiniteScroll, { static: true }) infiniteScroll: IonInfiniteScroll;
+  @ViewChild('slide', { static: true }) slide;
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    let api1 = '/pubs'
-    this.connect.get(api1).then((response: any) => {
-      // console.log(response);
-      this.pubList = response;
-    })
 
     this.getGoodsList()
+  }
+
+  // 当用户手动滑轮播图之后
+  slideTouchEnd() {
+    this.slide.startAutoplay()
   }
 
   // 获取数据 
@@ -41,6 +69,7 @@ export class Tab1Page implements OnInit {
       // console.log(response);
       this.goodsList = response;
     })
+    this.hasData = true;
   }
 
   // loadData(event) {

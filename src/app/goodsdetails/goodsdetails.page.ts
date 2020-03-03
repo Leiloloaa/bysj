@@ -4,6 +4,8 @@ import { ConnectService } from '../services/connect.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { ActionSheetController } from '@ionic/angular';
 
+import { NavController } from '@ionic/angular'
+
 @Component({
   selector: 'app-goodsdetails',
   templateUrl: './goodsdetails.page.html',
@@ -13,7 +15,9 @@ export class GoodsdetailsPage implements OnInit {
   public good: any[] = [];
   public domain: string;
   // public goodComments: any;
-  constructor(public router: ActivatedRoute, public connect: ConnectService, public http: HttpClient, public actionSheetController: ActionSheetController) {
+
+  public hasData: boolean = false;
+  constructor(public nav: NavController, public router: ActivatedRoute, public connect: ConnectService, public http: HttpClient, public actionSheetController: ActionSheetController) {
     this.domain = this.connect.domain
 
   }
@@ -25,10 +29,17 @@ export class GoodsdetailsPage implements OnInit {
     })
   }
 
+  goBack() {
+    // this.nav.back() // 不建议使用 因为它是直接返回到上一级
+
+    this.nav.navigateBack('/tabs/tab1')
+  }
+
   requestContent(id) {
     let api = 'http://localhost:3001/goodsdetails/' + id
     this.http.get(api).subscribe((data: any) => {
       this.good = data;
+      this.hasData = true;
     })
   }
 

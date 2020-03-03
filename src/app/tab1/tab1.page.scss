@@ -1,3 +1,53 @@
+ion-slide{
+  width: 37.5rem;
+  img{
+    width: 100%;
+    height: 17rem;
+  }
+}
+
+.h_title {
+  padding: 10px 5px;
+  font-size: 1.4rem;
+
+  &::before{
+    display: inline-block;
+    border-left: 3px solid #f53d3d;
+    height: 14px;
+    width: 1px;
+    content: '';
+    top: 2px;
+    position: relative;
+  }
+}
+
+.hotList{
+  width: 100%;
+  height: 10rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  ul{
+    li{
+      width: 8rem;
+      height: 10rem;
+      float: left;
+      margin: 1rem;
+    }
+    img{
+      width: 7rem;
+      height: 7rem;
+    }
+    p{
+      padding: .4rem;
+    }
+  }
+}
+
+
+.p_listItem{
+  text-align: center;
+}
+
 .card-content-ios {
   padding-left: unset;
   padding-right: unset;
@@ -16,26 +66,6 @@
   line-height: 1.4;
 }
 
-.hot {
-  .hotProduce {
-    width: 340px;
-    font-size: 13px;
-    .hotProduceTitle {
-      font-size: 16px;
-      width: 130px;
-      /* 不换行 */
-      white-space: nowrap;
-      /* 超出宽度隐藏 */
-      overflow: hidden;
-      /* 超出文字打点 */
-      text-overflow: ellipsis;
-      margin-right: 15px;
-    }
-    .hotProducePrice {
-      color: red;
-    }
-  }
-}
 .card {
   width: 155px;
   float: left;

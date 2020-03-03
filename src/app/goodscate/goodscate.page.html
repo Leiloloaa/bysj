@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="new">
+    <ion-buttons slot="start" class="btnback">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title">
+      商品分类
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="cate_content">
+    <div class="cate_left">
+     <ion-list >
+       <ion-item *ngFor="let item of cateList" lines="full">
+         <ion-label>{{item}}</ion-label>
+       </ion-item>
+     </ion-list>
+    </div>
+    <div class="cate_right">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" *ngFor="let item of cateListGoods">
+            <img [src]="item.pic" />
+            <p>{{item.title}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
+</ion-content>
+
+

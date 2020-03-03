@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
-
+import { NavController} from '@ionic/angular'
 @Component({
   selector: 'app-account',
   templateUrl: './account.page.html',
@@ -16,7 +16,7 @@ export class AccountPage implements OnInit {
   public school : string;
   public userContent: string;
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient,public navController:NavController) { }
 
   ngOnInit() {
   }
@@ -30,6 +30,11 @@ export class AccountPage implements OnInit {
         console.log(response);
       })
     
+  }
+
+  doRegister(){
+    // 回到根目录
+    this.navController.navigateRoot('/tabs/tab4')
   }
 
 

@@ -92,3 +92,10 @@
   --ion-color-shade: var(--ion-color-new-shade);
   --ion-color-tint: var(--ion-color-new-tint);
 }
+
+
+// 修改底部 tabs 按钮 默认颜色 以及选中颜色
+ion-tab-button{
+  --color:#8C8E8C;
+  --color-selected:#F53D3D;
+}

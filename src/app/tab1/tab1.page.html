@@ -6,31 +6,48 @@
     <ion-title class="title">
       淘二淘
     </ion-title>
+    <ion-buttons slot="end">
+      <img src="../../assets/qrcode.png">
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-img src="assets/shapes.svg"></ion-img>
-    <ion-card-header>
-      <ion-card-subtitle>公告</ion-card-subtitle>
-      <ion-card-title>火热聚物榜</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list class="hot" *ngFor="let item of pubList">
-        <ion-item class="hotProduce"><span class="hotProduceTitle">{{item.pubsName}}</span>价格区间:<span
-            class="hotProducePrice">{{item.pubsPrice}}￥</span></ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
 
-  <ion-searchbar id="serach" placeholder="搜索请输入：elegoods、bookgoods" animated [(ngModel)]="keywords"
+  <ion-slides pager="true" #slide [options]="slidesOpts" (ionSlideTouchEnd)="slideTouchEnd()">
+    <ion-slide *ngFor="let item of slidesList">
+      <img [src]="item.pic">
+    </ion-slide>
+  </ion-slides>
+
+  <div class="h_title">
+    猜你喜欢
+  </div>
+
+  <div class="hotList">
+    <ul class="clearfix" [ngStyle]="{'width': hotListWidth}">
+      <li *ngFor="let item of hotList">
+        <img [src]="item.pic">
+        <p>{{item.title}}</p>
+      </li>
+    </ul>
+
+  </div>
+  <ion-searchbar id="serach" placeholder="搜索请输入" animated [(ngModel)]="keywords"
     (keyup)="getItems($event)">
   </ion-searchbar>
-  <div *ngIf="flag">
-    <ion-card *ngFor="let goods of goodsList;let key=index" class="card">
-      <ion-card-content [routerLink]="['/goodsdetails',goods._id]">
-        <ion-list>
+
+  <div class="h_title">
+    商品列表
+  </div>
+
+  <div class="p_list">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let goods of goodsList;let key=index" class="p_listItem">
+          <div class="itemShow">
+            <div class="itemImg"><img [src]="goods.goodsImgSmall" alt="商品图片" title="商品图片" /></div>
+          </div>
           <div class="showInfo">
             <div class="itemInfo">
               <h2>{{goods.goodsName}}</h2>
@@ -38,14 +55,40 @@
               <p>简介:<br /><span>{{goods.goodsContent}}</span></p>
             </div>
           </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  
+
+
+
+  <!-- 网络慢的时候 加载数据用那个正在加载符 -->
+  <div class="center" *ngIf="!hasData">
+    <ion-spinner name="circles"></ion-spinner>
+  </div>
+
+
+  <div *ngIf="flag">
+    <ion-card *ngFor="let goods of goodsList;let key=index" class="card">
+      <ion-card-content [routerLink]="['/goodsdetails',goods._id]">
+        <ion-list>
           <div class="itemShow">
-            <div class="itemImg"><img [src]="goods.goodsImgSmall" alt="商品图片" title="商品图片"/></div>
+            <div class="itemImg"><img [src]="goods.goodsImgSmall" alt="商品图片" title="商品图片" /></div>
           </div>
+          <div class="showInfo">
+            <div class="itemInfo">
+              <h2>{{goods.goodsName}}</h2>
+              <p>价格：{{goods.goodsPrice}}￥</p>
+              <p>简介:<br /><span>{{goods.goodsContent}}</span></p>
+            </div>
+          </div>
+
         </ion-list>
       </ion-card-content>
     </ion-card>
   </div>
-<!-- 
+  <!-- 
   <ion-infinite-scroll threshold="50%" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载中...">
     </ion-infinite-scroll-content>

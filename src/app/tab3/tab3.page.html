@@ -11,6 +11,98 @@
 
 <ion-content>
   <p *ngIf="flag" class="flag">您的购物车空空如也!<br /><br />请您再逛逛！</p>
+  <dl class="cart_item">
+    <dt>
+      <ion-checkbox color="danger"></ion-checkbox>
+      <div class="img">
+        <img src="assets/03.jpg">
+      </div>
+    </dt>
+    <dd>
+      <h2 class="cart_title">商品标题商品标题商品标题商品标题</h2>
+      <div class="cart_info">
+        <div class="cart_price">
+          价格：100￥
+        </div>
+        <div class="cart_num">
+          <div class="input_left">-</div>
+          <div class="input_center">
+            <input type="text" name="num" id="num" value="1" readonly="readonly">
+          </div>
+          <div class="input_right">+</div>
+        </div>
+      </div>
+    </dd>
+  </dl>
+  <dl class="cart_item">
+    <dt>
+      <ion-checkbox color="danger"></ion-checkbox>
+      <div class="img">
+        <img src="assets/03.jpg">
+      </div>
+    </dt>
+    <dd>
+      <h2 class="cart_title">商品标题商品标题商品标题商品标题</h2>
+      <div class="cart_info">
+        <div class="cart_price">
+          价格：100￥
+        </div>
+        <div class="cart_num">
+          <div class="input_left">-</div>
+          <div class="input_center">
+            <input type="text" name="num" id="num" value="1" readonly="readonly">
+          </div>
+          <div class="input_right">+</div>
+        </div>
+      </div>
+    </dd>
+  </dl>
+  <dl class="cart_item">
+    <dt>
+      <ion-checkbox color="danger"></ion-checkbox>
+      <div class="img">
+        <img src="assets/03.jpg">
+      </div>
+    </dt>
+    <dd>
+      <h2 class="cart_title">商品标题商品标题商品标题商品标题</h2>
+      <div class="cart_info">
+        <div class="cart_price">
+          价格：100￥
+        </div>
+        <div class="cart_num">
+          <div class="input_left">-</div>
+          <div class="input_center">
+            <input type="text" name="num" id="num" value="1" readonly="readonly">
+          </div>
+          <div class="input_right">+</div>
+        </div>
+      </div>
+    </dd>
+  </dl>
+  <dl class="cart_item">
+    <dt>
+      <ion-checkbox color="danger"></ion-checkbox>
+      <div class="img">
+        <img src="assets/03.jpg">
+      </div>
+    </dt>
+    <dd>
+      <h2 class="cart_title">商品标题商品标题商品标题商品标题</h2>
+      <div class="cart_info">
+        <div class="cart_price">
+          价格：100￥
+        </div>
+        <div class="cart_num">
+          <div class="input_left">-</div>
+          <div class="input_center">
+            <input type="text" name="num" id="num" value="1" readonly="readonly">
+          </div>
+          <div class="input_right">+</div>
+        </div>
+      </div>
+    </dd>
+  </dl>
   <ion-card *ngFor="let good of goods">
     <ion-item>
       <ion-card-content class="icContent">
@@ -34,7 +126,7 @@
       </ion-card-content>
     </ion-item>
   </ion-card>
-  
+
   <!-- <div class="operate ion-padding" >
       <span class="allSel">全选</span>
       <span class="totol">/span>
@@ -44,3 +136,20 @@
       [queryParams]="{id:good._id}">结算商品 —— 总价：{{totol}}￥</ion-button>
   </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="checkout">
+        <ion-checkbox color="danger"></ion-checkbox>
+       全选
+     
+      <strong>合计：<span class="price">￥2000</span></strong>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button  class="sumBtn" (click)="onClick()" color="danger" fill="solid">
+        去结算
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

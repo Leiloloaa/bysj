@@ -12,11 +12,18 @@ export class Tab2Page {
   public ly: any[];
   public lyContent: string;
   public domain: string;
+  public pubList: any[];
   constructor(public connect: ConnectService, public http: HttpClient, public alertController: AlertController) { }
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.fetch()
+    let api1 = '/pubs'
+    this.connect.get(api1).then((response: any) => {
+      // console.log(response);
+      this.pubList = response;
+    })
+
   }
 
   async presentAlert() {

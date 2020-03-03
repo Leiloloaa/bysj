@@ -16,7 +16,11 @@ import { ConnectService } from '../app/services/connect.service'
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule
+  imports: [BrowserModule, IonicModule.forRoot({
+    mode: 'ios', // 配置 android ios 统一样式
+    backButtonText: '返回', // 修改默认返回文字
+    backButtonIcon: 'arrow-back' // 配置返回按钮图标
+  }), AppRoutingModule, HttpClientModule
   ],
   providers: [
     StatusBar,

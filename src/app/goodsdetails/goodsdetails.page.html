@@ -1,7 +1,10 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button text="返回" class="header"></ion-back-button>
+      <ion-button (click)="goBack()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+        返回
+      </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button class="header" color="secondary">分享</ion-button>
@@ -12,6 +15,12 @@
 </ion-header>
 
 <ion-content class="contain">
+  
+  <!-- 网络慢的时候 加载数据用那个正在加载符 -->
+  <div class="center" *ngIf="!hasData">
+    <ion-spinner name="circles"></ion-spinner>
+  </div>
+  
   <ion-list class="list" (press)="showActionSheetController()" lines="full">
     <ion-item class="listImg">
       <ion-img class="goodsImg" [src]="good.goodsImg"></ion-img>
