@@ -1,14 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button text="返回"></ion-back-button>
+      <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title class="title">我的信息</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list class="list" lines="full">
+  <div *ngIf="!userinfo">请先登录</div>
+  <ion-list class="list" lines="full" *ngIf="userinfo">
     <ion-item-divider>
       <ion-label>基本信息</ion-label>
     </ion-item-divider>
@@ -16,31 +19,31 @@
       <ion-label>用户名：</ion-label>
     </ion-item>
     <ion-item class="item1">
-      <ion-label>{{user.userName}}</ion-label>
+      <ion-input type="text" [(ngModel)]="userinfo.userName"></ion-input>
     </ion-item>
     <ion-item class="item">
       <ion-label>性别：(0：男；1：女)</ion-label>
     </ion-item>
     <ion-item class="item1">
-      <ion-label>{{user.userSex}}</ion-label>
+      <ion-input type="text" [(ngModel)]="userinfo.userSex"></ion-input>
     </ion-item>
     <ion-item class="item">
       <ion-label>学校：(sdky：师大科院；ndky：南大科院)</ion-label>
     </ion-item>
     <ion-item class="item1">
-      <ion-label>{{user.school}}</ion-label>
+      <ion-input type="text" [(ngModel)]="userinfo.school"></ion-input>
     </ion-item>
     <ion-item class="item">
       <ion-label>收获地址：</ion-label>
     </ion-item>
     <ion-item class="item1">
-      <ion-label>{{user.address}}</ion-label>
+      <ion-input type="text" [(ngModel)]="userinfo.address"></ion-input>
     </ion-item>
     <ion-item class="item">
       <ion-label>个人简介：</ion-label>
     </ion-item>
     <ion-item class="item1">
-      <ion-label>{{user.userContent}}</ion-label>
+      <ion-input type="text" [(ngModel)]="userinfo.userContent"></ion-input>
     </ion-item>
   </ion-list>
 </ion-content>

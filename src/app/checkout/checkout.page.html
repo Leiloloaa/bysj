@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>确认订单</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <div class="order">
+    <div class="address_list">
+
+      <ion-list *ngIf="userinfo" lines="none">
+        <ion-item [routerLink]="['/address']">
+          <ion-icon slot="start" name="pin" color="light"></ion-icon>
+          {{address}}
+        </ion-item>
+      </ion-list>
+
+      <ion-list *ngIf="!userinfo" lines="none" class="nologin">
+        <ion-item>
+          <ion-label>
+            <p>您还没有登录，登录后同步您的订单信息...</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-button color="light" [routerLink]="['/login']" [queryParams]="{returnUrl:'/checkout'}">
+            登录
+          </ion-button>
+        </ion-item>
+
+      </ion-list>
+
+    </div>
+
+    <div class="product_list" *ngFor="let item of list">
+
+      <ion-list>
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <img [src]="item.goodsPic" />
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{item.goodsName}}</h2>
+            <p>发货方式：{{item.attr}}</p>
+            <p><span class="price">¥{{item.goodsPrice}}</span> <span class="count">x{{item.num}}</span></p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+    </div>
+
+    <div class="order_info">
+      <ion-list lines="none">
+        <ion-item>
+          <ul>
+            <li>在线支付</li>
+            <li>
+              <p>属性：自取/邮寄;</p>
+            </li>
+            <li>自取：商家会联系你；<br />邮寄：会有校园快递送货上门(校区计费)；</li>
+          </ul>
+        </ion-item>
+
+        <ion-item-divider>
+        </ion-item-divider>
+
+        <ion-item class="order_price">
+          <ul>
+            <li>商品总金额 <span>¥{{goodsSum}}</span></li>
+            <li>新人优惠<span>-¥5</span></li>
+          </ul>
+        </ion-item>
+        <ion-item-divider>
+        </ion-item-divider>
+      </ion-list>
+    </div>
+  </div>
+
+</ion-content>
+
+
+
+<ion-footer>
+  <ion-toolbar>
+    <span slot="start">实付款: <span class="price"> ¥{{goodsSum-5}}</span></span>
+
+    <ion-buttons slot="end">
+      <ion-button color="danger" fill="solid" (click)="doOrder()">
+        立即下单
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+
+</ion-footer>

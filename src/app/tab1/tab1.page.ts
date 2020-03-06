@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConnectService } from '../services/connect.service';
 import { LoadingController } from '@ionic/angular';
-import { IonInfiniteScroll } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-tab1',
@@ -9,7 +10,8 @@ import { IonInfiniteScroll } from '@ionic/angular';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
-  public slidesList: any[] = []; // 轮播图
+  public config: {}; // 
+  public focusList: any[] = []; // 轮播图
   public slidesOpts: {} = { // 配置轮播图属性
     speed: 400,
     autoplay: {
@@ -25,34 +27,17 @@ export class Tab1Page implements OnInit {
   public flag: boolean = true;
   public domain: string;
   public hasData: boolean = false; // 判断是否有数据 显示加载按钮
-  constructor(public connect: ConnectService, public loadingController: LoadingController) {
+
+  // 构造函数只做初始化的操作
+  constructor(public navController: NavController, public connect: ConnectService, public loadingController: LoadingController) {
     this.domain = this.connect.domain;
-
-    for (let i = 1; i <= 3; i++) {
-      this.slidesList.push({
-        pic: 'assets/slide0' + i + '.png',
-        url: '',
-      })
-    }
-
-    for (let i = 1; i <= 9; i++) {
-      this.hotList.push({
-        pic: 'assets/0' + i + '.jpg',
-        title: '第' + i + '个'
-      })
-    }
-
-    // 计算 hotListWidth 热门商品属性
-    this.hotListWidth = this.hotList.length * 10 + 'rem';
+    this.config = this.connect.config;
   }
 
-  // @ViewChild(IonInfiniteScroll, { static: true }) infiniteScroll: IonInfiniteScroll;
   @ViewChild('slide', { static: true }) slide;
-
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-
+    this.getFocusData()
+    this.getHotData()
     this.getGoodsList()
   }
 
@@ -61,30 +46,12 @@ export class Tab1Page implements OnInit {
     this.slide.startAutoplay()
   }
 
-  // 获取数据 
-  // todo 每次获取10-15条数据要如何实现
-  getGoodsList() {
-    let api = '/goods'
-    this.connect.get(api).then((response: any) => {
-      // console.log(response);
-      this.goodsList = response;
-    })
-    this.hasData = true;
+  // 跳转到搜索页面
+  goSearch() {
+    this.navController.navigateForward('/search')
   }
 
-  // loadData(event) {
-  //   setTimeout(() => {
-  //     // this.getGoodsList();
-  //     event.target.complete(); // 此次获取已结束 可以开始下次获取
-
-  //     // 判断如果大于goodsList的长度 就停用 这个是根据服务器的数据来设定的
-  //     // 只展示最多30条数据
-  //     // if (this.goodsList.length > 30) {
-  //     //   event.target.disabled = true;
-  //     // }
-  //   }, 500);
-  // }
-
+  // 获取搜索到的数据
   getItems(e) {
     this.newgoodsList = [];
     if (this.keywords != '' && this.keywords) {
@@ -103,11 +70,34 @@ export class Tab1Page implements OnInit {
     }
   }
 
-  // async presentLoading() {
-  //   const loading = await this.loadingController.create({
-  //     message: 'loading...',
-  //     duration: 400
-  //   });
-  //   await loading.present();
-  // }
+  // 获取轮播图的数据
+  getFocusData() {
+    let api = "api/focus"
+    this.connect.ajaxGet(api).then((response: any) => {
+      // console.log(response);
+      this.focusList = response.result;
+    })
+  }
+
+  // 获取热门商品
+  getHotData() {
+    let api = "api/plist?is_hot=1"
+    this.connect.ajaxGet(api).then((response: any) => {
+      console.log(response);
+      this.hotList = response.result;
+      // 计算 hotListWidth 热门商品属性
+      this.hotListWidth = this.hotList.length * 10 + 'rem';
+    })
+  }
+
+  // 获取商品列表 
+  // todo 每次获取10-15条数据要如何实现
+  getGoodsList() {
+    let api = '/goods'
+    this.connect.get(api).then((response: any) => {
+      // console.log(response);
+      this.goodsList = response;
+    })
+    this.hasData = true;
+  }
 }

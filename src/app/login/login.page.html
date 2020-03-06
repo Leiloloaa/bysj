@@ -1,33 +1,35 @@
 <ion-header translucent>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button text="返回"></ion-back-button>
+      <ion-button (click)="goBack()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title class="title">登录</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
+  <img src="assets/timg.jpg" alt="">
   <form>
+    <ion-item-divider>
+    </ion-item-divider>
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
       <ion-item>
-        <ion-label position="stacked">用户名： <ion-text color="danger">*</ion-text>
-        </ion-label>
-        <ion-input required type="text" maxlength="8" minlength="2" placeholder="请输入用户名" #username></ion-input>
+        <ion-input required type="text" maxlength="8" minlength="2" placeholder="用户名" [(ngModel)]="userinfo.userName" name="userName"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked">密码： <ion-text color="danger">*</ion-text>
-        </ion-label>
-        <ion-input required type="password" maxlength="12" minlength="6" placeholder="请输入密码" #password></ion-input>
+        <ion-input required type="password" maxlength="12" minlength="6" placeholder="密码" [(ngModel)]="userinfo.userPsd" name="userPsd"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <span slot="start">忘记密码</span>
+        <span slot="end" [routerLink]="['/account']">新用户注册</span>
       </ion-item>
     </ion-list>
-    <div class="ion-padding">
-      <ion-buttons slot="end" class="btns">
-        <ion-button type="submit" class="ion-no-margin1" (click)="login(username,password)">登录</ion-button>
-        <ion-button type="submit" class="ion-no-margin2" [routerLink]="['/account']">注册</ion-button>
-      </ion-buttons>
 
-    </div>
+    <ion-button (click)="doLogin()" expand="block" color="danger">登录</ion-button>
+
   </form>
 </ion-content>

@@ -1,22 +1,24 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button text="返回"></ion-back-button>
+      <ion-button (click)="goBack()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title class="title">我的订单</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <p *ngIf="flag" class="flag">抱歉！您还没有购买任何商品呢！<br /><br />请你再逛逛！</p>
-  <ion-card *ngFor="let good of goods;let key=index">
+  <p *ngIf="!list" class="flag">抱歉！您还没有购买任何商品呢！<br /><br />请你再逛逛！</p>
+  <ion-card *ngFor="let good of list;let key=index">
     <ion-card-content>
       <ion-list class="showInfo">
         <div class="title1">订单状态：已支付</div><br />
         <div class="title1">发货状态：未发货</div><br />
         <div class="itemTitle"><span>商品名：{{good.goodsName}}</span><br /><span>价格：{{good.goodsPrice}}￥</span><br /></div>
         <ion-button class="goodsbtn" fill="clear">删除此订单</ion-button>
-        <div class="itemImg"><img [src]="good.goodsImgSmall"></div>
+        <div class="itemImg"><img [src]="good.goodsPic"></div>
       </ion-list>
     </ion-card-content>
   </ion-card>

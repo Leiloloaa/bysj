@@ -13,19 +13,19 @@
       <ion-item>
         <ion-label position="stacked">用户名：<ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input type="text" [(ngModel)]="userName" name="userName"></ion-input>
+        <ion-input type="text" [(ngModel)]="userName" name="userName" placeholder="请输入用户名"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">密码：<ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input type="password" [(ngModel)]="userPsd" name="userPsd"></ion-input>
+        <ion-input type="password" [(ngModel)]="userPsd" name="userPsd" placeholder="请输入密码"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">确认密码：<ion-text color="danger">*</ion-text>
         </ion-label>
-        <ion-input type="password" ></ion-input>
+        <ion-input type="password" [(ngModel)]="ruserPsd" name="ruserPsd" placeholder="请确认密码"></ion-input>
       </ion-item>
 
       <ion-item class="iSize">
@@ -40,17 +40,17 @@
       <ion-item class="iSize">
         <ion-label position="stacked">收获地址：<ion-text color="danger">*</ion-text></ion-label>
         <ion-input placeholder="您的收获地址" [(ngModel)]="address" name="address"></ion-input>
-        <ion-input placeholder="您的学校" [(ngModel)]="school" name="school"></ion-input>
+        <ion-input placeholder="您的学校(ndky或sdky)" [(ngModel)]="school" name="school"></ion-input>
       </ion-item>
 
       <ion-item class="iSize">
         <ion-label position="stacked">个人简介</ion-label>
-        <ion-textarea placeholder="输入您的个人简介，让别人更好的了解您！(不超过30字)" maxlength="30" [(ngModel)]="userContent" name="userContent"></ion-textarea>
+        <ion-textarea placeholder="输入您的个人简介，让别人更好的了解您！(不超过15字)" maxlength="30" [(ngModel)]="userContent" name="userContent"></ion-textarea>
       </ion-item>
     </ion-list>
 
     <div class="ion-padding">
-      <ion-button expand="block" type="submit" class="ion-no-margin" (click)="doRegister()">注册</ion-button>
+      <ion-button expand="block" type="submit" class="ion-no-margin" (click)="doRegister()" color="danger">注册</ion-button>
     </div>
   </form>
 </ion-content>

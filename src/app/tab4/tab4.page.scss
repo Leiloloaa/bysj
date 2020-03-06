@@ -6,9 +6,15 @@
   text-align: center;
   line-height: 80px;
 }
-ion-list-header {
-  background-color: #66B1FF;
+
+ion-content {
+  overflow: hidden;
 }
+
+ion-list-header {
+  background-color: #66b1ff;
+}
+
 .info-data {
   width: 100%;
   background: $fc;
@@ -25,20 +31,20 @@ ion-list-header {
         text-align: center;
       }
       .info-data-top {
-        @include sc(0.92rem, #333);
-        padding: 1.5rem 0 0.75rem;
+        font-size: 44px;
+        padding: 20px 0 14.5px;
         b {
           display: inline-block;
-          @include sc(2rem, #f90);
           font-weight: 700;
-          line-height: 1.67rem;
+          line-height: 16.7px;
           font-family: Helvetica Neue, Tahoma;
         }
       }
       .info-data-bottom {
-        @include sc(0.95rem, #666);
-        font-weight: 400;
-        padding-bottom: 0.453333rem;
+        font-size: 14.5px;
+        color: #666;
+        font-weight: 600;
+        padding-bottom: 3.5px;
       }
     }
     .info-data-link:nth-of-type(2) {

@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+
+import { StorageService } from '../services/storage.service'
+import { EventService } from '../services/event.service';
 
 @Component({
   selector: 'app-login',
@@ -10,37 +14,52 @@ import { NavController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  constructor(public http: HttpClient, public toastController: ToastController, public navCtrl: NavController) { }
+  public userinfo: any = {
+  }
+  public returnUrl: any = ''
+  constructor(public activatedRoute: ActivatedRoute, public http: HttpClient, public toastController: ToastController, public navCtrl: NavController, public storage: StorageService, public eventService: EventService) { }
 
   ngOnInit() {
+
+    this.activatedRoute.queryParams.subscribe((data: any) => {
+      data.returnUrl ? this.returnUrl = data.returnUrl : this.returnUrl = '/tabs/tab4';
+    })
+
   }
 
-  login(username: HTMLInputElement, password: HTMLInputElement) {
-    if (username.value.length == 0) {
+  doLogin() {
+    if (this.userinfo.userName == 0) {
       this.presentToast();
-    } else if (password.value.length == 0) {
+    } else if (this.userinfo.userPsd.length < 6) {
       this.presentToast();
     } else {
-      let userinfo: string = '用户名：' + username.value + '密码：' + password.value;
-      // var data = { "userName": username.value, "password": password.value };
-      // this.http.post("/api/login", data).toPromise()
-      //   .then(res => {
-      //     console.log(res)
-      //   })
-      //   .catch(err => {
-      //     console.log(err)
-      //   });
+      var data = { "userName": this.userinfo.userName, "userPsd": this.userinfo.userPsd };
+      this.http.post("http://localhost:3001/api/login", data).toPromise()
+        .then((res: any) => {
+          // console.log(res)
+          if (res.isSuccess != false) {
+            // 1. 保存用户信息
+            this.storage.set('userinfo', res)
+            // 2. 跳转到个人中心
+            this.navCtrl.navigateBack(this.returnUrl)
 
-      // 带参数传参
+            // 3. 通知用户中心更新用户信息
+            this.eventService.event.emit('userlogin')
+          } else {
+            this.presentToast();
+          }
 
-      this.navCtrl.navigateBack('/tabs/tab4', {
-        queryParams: {
-          id: '5e0164f6e4b5f522acb513b6'
-        }
-      });
-      console.log('登录验证');
+        })
+        .catch(err => {
+          console.log(err)
+        });
+
 
     }
+  }
+
+  goBack() {
+    this.navCtrl.navigateForward(this.returnUrl)
   }
 
   async presentToast() {

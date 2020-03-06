@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
 
@@ -8,19 +8,18 @@ import { ActivatedRoute } from '@angular/router';
 import { StorageService } from '../services/storage.service';
 import { ConnectService } from '../services/connect.service'
 import { CartService } from '../services/cart.service'
-
 @Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  selector: 'app-cart',
+  templateUrl: './cart.page.html',
+  styleUrls: ['./cart.page.scss'],
 })
-export class Tab3Page {
+export class CartPage implements OnInit {
   public list: any = []
   public allPrice: any = 0
   public isCheckedAll: boolean = true
   public isEdit: boolean = false // 是否编辑
   public hasData: boolean = false // 是否有数据
-  constructor(public navController: NavController, public route: ActivatedRoute, public http: HttpClient, public storageService: StorageService, public connectService: ConnectService, public cartService: CartService) {
+  constructor(public navController:NavController,public route: ActivatedRoute, public http: HttpClient, public storageService: StorageService, public connectService: ConnectService, public cartService: CartService) {
   }
 
   // ionic 生命周期函数 ngInit 只会执行一次
@@ -132,7 +131,7 @@ export class Tab3Page {
       this.storageService.set('checkoutdata', tempArr)
       this.navController.navigateForward(['/checkout'], {
         queryParams: {
-          returnUrl: '/tabs/tab3'
+          returnUrl: '/cart'
         }
       })
     } else {
@@ -140,4 +139,5 @@ export class Tab3Page {
     }
   }
 }
+
 

@@ -1,0 +1,61 @@
+.order{
+    background: #eee;
+    .address_list{
+        background: #fff;
+        .nologin{
+             ion-item{
+
+                font-size: 16px;
+
+                ion-button{
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+
+
+    .product_list{
+        border: 1px solid #fff;
+        background: #fff;
+        margin-bottom: 10px;
+        h2{
+            font-size: 1.4rem;
+        }
+        .count{
+            float: right;
+        }
+        .price{
+            color: #f40;
+        }
+        
+    }
+
+    .order_info{
+
+        ul{
+            li{
+
+                font-size: 1.6rem;
+                line-height: 2;                
+            }
+        }
+
+        ion-input{
+            font-size: 1.6rem;
+        }
+    }
+    
+   
+    
+}
+
+
+.list-ios{
+    margin-bottom: 10px;
+}
+
+//注意写法
+ion-item-divider{
+    min-height: 10px!important;
+}

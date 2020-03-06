@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { NavController } from '@ionic/angular';
+import { StorageService } from '../services/storage.service';
 
 //引入接受路由传值的模块
 import { ActivatedRoute } from '@angular/router';
@@ -9,57 +11,65 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./myorder.page.scss'],
 })
 export class MyorderPage implements OnInit {
-  public flag: boolean = true;
-  public good: any[] = [];
-  public goods: any[] = [];
-  constructor(public route: ActivatedRoute, public http: HttpClient) { }
+  public returnUrl = '';
+  public userinfo: any = {};
+  public list: any[] = [];
+  public newList: any[] = []
+  constructor(
+    public route: ActivatedRoute,
+    public http: HttpClient,
+    public navController: NavController,
+    public storage: StorageService
+  ) {
+    this.route.queryParams.subscribe((data: any) => {
+      data.returnUrl ? this.returnUrl = data.returnUrl : this.returnUrl = '/tabs/tab4';
+    })
+  }
 
   ngOnInit() {
-    this.route.queryParams.subscribe((data) => {
-      // console.log(JSON.stringify(data));
-      this.requestContent(data.id);
-    })
+
   }
 
-  requestContent(id) {
-    let api = 'http://localhost:3001/goodsdetails/' + id
-    this.http.get(api).subscribe((data: any) => {
-      this.good = data;
-      console.log(this.good);
-      this.addMyOrder(this.good);
-      this.flag = false
-    })
+
+  ionViewDidEnter() {
+
+    // 获取用户信息
+    var userinfo = this.storage.get('userinfo');
+    if (userinfo && userinfo[0].userName) {
+      this.userinfo = userinfo[0];
+    } else {
+      this.userinfo = '';
+    }
+    // 获取结算商品
+    this.list = this.storage.get('checkoutdata');
+    this.postData()
   }
 
-  addMyOrder(good) {
-    // goods 是空的情况 直接加进去
-    // if (this.goods.length == 0) {
-    //   console.log('购物车里没有商品的时候');
-    //   this.goods.push(good)
-    // }
-    // goods 里有商品的时候
-    // 问题 但重复第二个商品的时候 会有问题
-    // if (this.goods.length >= 1) {
-    //   for (var i = 0; i < this.goods.length; i++) {
-    //     if (this.goods[i].goodsName == good.goodsName) {
-    //       console.log('购物车中有此商品');
-    //     } else {
-    //       console.log('添加商品成功');
-    this.goods.push(good)
-    //   }
-    // }
-    // }
-    this.postOrder(good)
-  }
+  postData() {
+    var userName = this.userinfo.userName
+    var _id = this.userinfo._id
+    var address = this.userinfo.address
 
-  // 提交订单
-  // 问题：获取不到 goodsName goodsPrice
-  postOrder(good) {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }
     let api = "http://localhost:3001/api/orders";
-    this.http.post(api, { "usersName": "小磊", "goodsName": good.goodsName, "goodsPrice": good.goodsPrice, "address": "江西省南昌市青山湖区北京东路339号", "goodsStatu": "true", "goodsDeliver": "false", "__v": 0 }, httpOptions)
+    this.http.post(api, {
+      "goodsName": this.list[0]["goodsName"],
+      "goodsPrice": this.list[0]["goodsPrice"],
+      "goodsStatu": '已支付',
+      "goodsDeliver": '未发货',
+      "userName": userName,
+      "userId": _id,
+      "address": address,
+      "attr":this.list[0]["attr"],
+      "__v": 0
+    }, httpOptions)
       .subscribe((response) => {
         console.log(response);
       })
+
   }
+  goBack() {
+    this.navController.navigateBack(this.returnUrl);
+  }
+
 }

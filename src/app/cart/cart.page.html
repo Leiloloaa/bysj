@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar color="new">
-    <ion-title class="title">
-      购物车
-    </ion-title>
+    <ion-buttons slot="start" class="btnback">
+      <ion-back-button defaultHref="/tabs/tab1" text="返回"></ion-back-button>
+    </ion-buttons>
 
     <ion-buttons slot="end" *ngIf="!isEdit">
       <ion-button (click)="isEdit=!isEdit">
@@ -50,7 +50,7 @@
   </div>
 </ion-content>
 
-<ion-footer *ngIf="hasData">
+<ion-footer>
   <ion-toolbar *ngIf="!isEdit">
     <ion-buttons slot="start" class="checkout" (click)="checkAll();$event.stopPropagation();">
       <ion-checkbox color="danger" [(ngModel)]="isCheckedAll"></ion-checkbox>

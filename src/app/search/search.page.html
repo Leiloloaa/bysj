@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+
+      <ion-button (tap)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-searchbar placeholder="按类别输入" animated></ion-searchbar>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="doSearch()" color="dark">
+        搜索
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar class="sub_toolbar" *ngIf="!flag">   
+     <div class="subheader">
+
+        <div>图片</div>
+        <div>名称</div>
+        <div>价格</div>
+     </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="search_content" *ngIf="flag" padding>
+    <div class="hotlist">
+      <h3 class="search_title">热搜</h3>
+      <p>
+        <span>女装</span>
+        <span>男装</span>
+        <span>家具</span>
+        <span>化妆品</span>
+        <span>女装</span>
+        <span>女装</span>
+        <span>男装</span>
+        <span>家具</span>
+        <span>化妆品</span>
+      </p>
+
+    </div>
+
+    <div class="history">
+
+      <h3 class="search_title">历史搜索</h3>
+
+      <ion-list lines="full">
+        <ion-item>
+          男装
+        </ion-item>
+        <ion-item>
+          女装
+        </ion-item>
+        <ion-item>
+          汽车
+        </ion-item>
+        <ion-item>
+          美容
+        </ion-item>
+      </ion-list>
+
+    </div>
+
+  </div>
+
+  <div class="p_list">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let goods of goodsList;let key=index" class="p_listItem"
+          [routerLink]="['/goodsdetails',goods._id]">
+          <div class="p_listInner">
+            <div class="itemImg"><img [src]="goods.goodsImgSmall" alt="商品图片" title="商品图片" /></div>
+            <div class="itemInfo">
+              <h2>{{goods.goodsName}}</h2>
+              <p>价格：{{goods.goodsPrice}}￥</p>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="list_content" *ngIf="!flag">
+      <ion-list>
+            <ion-item *ngFor="let item of productList">
+              <ion-thumbnail slot="start">
+                <img [src]="item.goodsImg" />
+              </ion-thumbnail>
+              <ion-label> 
+                  <h3>{{item.goodsName}}</h3>
+                  <p><span class="price">¥{{item.goodsPrice}}</span></p>
+              </ion-label>
+            </ion-item>
+      </ion-list>
+  </div>
+</ion-content>

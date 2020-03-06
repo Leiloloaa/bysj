@@ -1,14 +1,18 @@
-.btns {
-  position: relative;
-  height: 60px;
-  .ion-no-margin1 {
-    position: absolute;
-    right: 80px;
-    top: 6px;
-  }
-  .ion-no-margin2 {
-    position: absolute;
-    right: 20px;
-    top: 6px;
+img{
+  display: block;
+  width: 50%;
+  height:25%;
+  margin: 0 auto;
+  border-radius: 50% 50%;
+}
+
+ion-item-divider{
+  background-color: #fff;
+}
+
+ion-item{
+  span{
+    font-size: 1.4rem;
+    color: #d61313;
   }
 }

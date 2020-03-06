@@ -3,44 +3,90 @@
     <ion-buttons slot="start">
       <ion-button (click)="goBack()">
         <ion-icon slot="start" name="arrow-back"></ion-icon>
-        返回
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button class="header" color="secondary">分享</ion-button>
-      <ion-button class="header" color="secondary">联系商家</ion-button>
-    </ion-buttons>
-    <ion-title class="title">商品详情</ion-title>
+    <ion-segment value="pizza" [(ngModel)]="tab">
+      <ion-segment-button value="list">
+        <ion-label>详情</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="content">
+        <ion-label>评论</ion-label>
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="contain">
-  
+<ion-content>
+  <div [ngSwitch]="tab">
+
+    <div *ngSwitchCase="'list'" class="contain">
+
+      <div class="goodsImg">
+        <img [src]="good.goodsImg" />
+      </div>
+
+      <div class="p_info">
+        <div class="p_title">
+          <h2>{{good.goodsName}}</h2>
+          <p>{{good.goodsContent}}</p>
+        </div>
+        <div class="p_price">
+          <span class="now_price">二手价：<span class="price">￥{{good.goodsPrice}}</span></span>
+          <span class="amount">先存货：{{good.amount}}</span>
+        </div>
+      </div>
+
+      <div class="goodsAttr">
+        <div class="cate">商品类别：{{good.goodsCate}}</div>
+        <p>类别说明：elegoods（电子商品）、bookgoods（书籍）、lifegoods（生活用品）、othergoods（其它）</p>
+        <div class="cate" id="myAttr" (click)="changeAttr($event)">发货方式：<span class="active">自取</span><span>邮件</span>
+        </div>
+        <div class="amount">
+          <span>数量：</span>
+          <div class="cart_num">
+            <div class="input_left" (click)="decNum()">-</div>
+            <div class="input_center">
+              <input type="text" name="num" [(ngModel)]="num" value="1" readonly="readonly">
+            </div>
+            <div class="input_right" (click)="addNum()">+</div>
+          </div>
+        </div>
+
+        <div class="cate">联系方式：13155836501</div>
+      </div>
+
+    </div>
+    <div *ngSwitchCase="'content'">
+      <app-comments [goodsComments]="good.goodsComments"></app-comments>
+    </div>
+
+  </div>
+
   <!-- 网络慢的时候 加载数据用那个正在加载符 -->
   <div class="center" *ngIf="!hasData">
     <ion-spinner name="circles"></ion-spinner>
   </div>
-  
-  <ion-list class="list" (press)="showActionSheetController()" lines="full">
-    <ion-item class="listImg">
-      <ion-img class="goodsImg" [src]="good.goodsImg"></ion-img>
-    </ion-item>
-    <ion-item class="listItem">
-      <ion-label>商品名称：{{good.goodsName}}&nbsp;&nbsp;({{good.goodsCate}})</ion-label>
-    </ion-item>
-    <ion-item class="listItem">
-      <ion-label>商品价格：{{good.goodsPrice}}￥</ion-label>
-    </ion-item>
-    <ion-item class="listItem">
-      <ion-label>商品数量：{{good.amount}}</ion-label>
-    </ion-item>
-    <ion-item class="listItem">
-      <ion-label>商品描述：{{good.goodsContent}}</ion-label>
-    </ion-item>
-  </ion-list>
 
-  <ion-button color="success" fill="outline" expand="block" [routerLink]="['/tabs/tab3']" [queryParams]="{id:good._id}">
-    同学我要了
-  </ion-button>
-  <app-comments [goodsComments]="good.goodsComments"></app-comments>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+
+    <div class="footer_bar">
+
+      <div class="cart" [routerLink]="['/cart']">
+        <ion-icon slot="start" name="cart"></ion-icon>
+        <p>购物车</p>
+        <ion-badge color="danger">{{cartNum}}</ion-badge>
+      </div>
+
+      <div class="addcart" (click)="addCart()" [routerLink]="['/tabs/tab3']" [queryParams]="{id:good._id}">加入购物车</div>
+
+      <div class="buy">
+        同学，我要了
+      </div>
+
+    </div>
+
+  </ion-toolbar>
+</ion-footer>

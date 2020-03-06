@@ -1,151 +1,160 @@
-ion-slide{
-  width: 37.5rem;
-  img{
-    width: 100%;
-    height: 17rem;
-  }
-}
-
 .h_title {
   padding: 10px 5px;
   font-size: 1.4rem;
-
-  &::before{
+  border-bottom: 0.05rem solid #eee;
+  &::before {
     display: inline-block;
     border-left: 3px solid #f53d3d;
     height: 14px;
     width: 1px;
-    content: '';
+    content: "";
     top: 2px;
     position: relative;
   }
 }
 
-.hotList{
+.hotList {
   width: 100%;
   height: 10rem;
   overflow-x: auto;
   overflow-y: hidden;
-  ul{
-    li{
+  ul {
+    li {
       width: 8rem;
       height: 10rem;
       float: left;
       margin: 1rem;
     }
-    img{
+    img {
       width: 7rem;
       height: 7rem;
     }
-    p{
-      padding: .4rem;
+    p {
+      padding: 0.4rem;
     }
   }
 }
 
+.p_list {
+  .p_listInner {
+    padding: 0.5rem;
+    border: 1px solid #eee;
 
-.p_listItem{
+    .itemInfo {
+      h2 {
+        height: 3.8rem;
+        font-size: 1.6rem;
+        font-weight: 600;
+      }
+      p {
+        font-size: 1.4rem;
+        color: #f53d3d;
+      }
+    }
+  }
+}
+.p_listItem {
   text-align: center;
 }
 
-.card-content-ios {
-  padding-left: unset;
-  padding-right: unset;
-  -webkit-padding-start: 10px;
-  padding-inline-start: 10px;
-  -webkit-padding-end: 10px;
-  padding-inline-end: 10px;
-}
+// .card-content-ios {
+//   padding-left: unset;
+//   padding-right: unset;
+//   -webkit-padding-start: 10px;
+//   padding-inline-start: 10px;
+//   -webkit-padding-end: 10px;
+//   padding-inline-end: 10px;
+// }
 
-.card-content-ios {
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  font-size: 16px;
-  line-height: 1.4;
-}
+// .card-content-ios {
+//   padding-left: 12px;
+//   padding-right: 12px;
+//   padding-top: 12px;
+//   padding-bottom: 12px;
+//   font-size: 16px;
+//   line-height: 1.4;
+// }
 
-.card {
-  width: 155px;
-  float: left;
-  margin-bottom: -5px;
-  .showInfo {
-    .itemInfo {
-      font-size: 14px;
-      h2 {
-        font-weight: 800;
-        /* 单行文本 溢出打点三件套 */
-        /* 不换行 */
-        white-space: nowrap;
-        /* 超出宽度隐藏 */
-        overflow: hidden;
-        /* 超出文字打点 */
-        text-overflow: ellipsis;
-      }
-      p > span {
-        width: 120px;
-        display: inline-block;
-        /* 单行文本 溢出打点三件套 */
-        /* 不换行 */
-        white-space: nowrap;
-        /* 超出宽度隐藏 */
-        overflow: hidden;
-        /* 超出文字打点 */
-        text-overflow: ellipsis;
-      }
-    }
-  }
-  .itemShow {
-    .itemImg {
-      img {
-        width: 100%;
-        height: 100%;
-        display: block;
-        border-radius: 5px;
-      }
-    }
-  }
-}
+// .card {
+//   width: 155px;
+//   float: left;
+//   margin-bottom: -5px;
+//   .showInfo {
+//     .itemInfo {
+//       font-size: 14px;
+//       h2 {
+//         font-weight: 800;
+//         /* 单行文本 溢出打点三件套 */
+//         /* 不换行 */
+//         white-space: nowrap;
+//         /* 超出宽度隐藏 */
+//         overflow: hidden;
+//         /* 超出文字打点 */
+//         text-overflow: ellipsis;
+//       }
+//       p > span {
+//         width: 120px;
+//         display: inline-block;
+//         /* 单行文本 溢出打点三件套 */
+//         /* 不换行 */
+//         white-space: nowrap;
+//         /* 超出宽度隐藏 */
+//         overflow: hidden;
+//         /* 超出文字打点 */
+//         text-overflow: ellipsis;
+//       }
+//     }
+//   }
+//   .itemShow {
+//     .itemImg {
+//       img {
+//         width: 100%;
+//         height: 100%;
+//         display: block;
+//         border-radius: 5px;
+//       }
+//     }
+//   }
+// }
 
-.card2 {
-  display: flex;
-  justify-content: space-between;
-  .showInfo {
-    width: 180px;
-    line-height: 2;
-    .itemInfo {
-      font-size: 14px;
-      h2 {
-        font-weight: 800 !important;
-        /* 单行文本 溢出打点三件套 */
-        /* 不换行 */
-        white-space: nowrap;
-        /* 超出宽度隐藏 */
-        overflow: hidden;
-        /* 超出文字打点 */
-        text-overflow: ellipsis;
-      }
-      p > span {
-        width: 160px;
-        display: inline-block;
-        /* 单行文本 溢出打点三件套 */
-        /* 不换行 */
-        white-space: nowrap;
-        /* 超出宽度隐藏 */
-        overflow: hidden;
-        /* 超出文字打点 */
-        text-overflow: ellipsis;
-      }
-    }
-  }
-  .itemShow {
-    flex: 1;
-    img {
-      width: 120px;
-      height: 120px;
-      display: block;
-      border-radius: 5px;
-    }
-  }
-}
+// .card2 {
+//   display: flex;
+//   justify-content: space-between;
+//   .showInfo {
+//     width: 180px;
+//     line-height: 2;
+//     .itemInfo {
+//       font-size: 14px;
+//       h2 {
+//         font-weight: 800 !important;
+//         /* 单行文本 溢出打点三件套 */
+//         /* 不换行 */
+//         white-space: nowrap;
+//         /* 超出宽度隐藏 */
+//         overflow: hidden;
+//         /* 超出文字打点 */
+//         text-overflow: ellipsis;
+//       }
+//       p > span {
+//         width: 160px;
+//         display: inline-block;
+//         /* 单行文本 溢出打点三件套 */
+//         /* 不换行 */
+//         white-space: nowrap;
+//         /* 超出宽度隐藏 */
+//         overflow: hidden;
+//         /* 超出文字打点 */
+//         text-overflow: ellipsis;
+//       }
+//     }
+//   }
+//   .itemShow {
+//     flex: 1;
+//     img {
+//       width: 120px;
+//       height: 120px;
+//       display: block;
+//       border-radius: 5px;
+//     }
+//   }
+// }
