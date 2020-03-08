@@ -60,7 +60,7 @@ export class MyorderPage implements OnInit {
       "userName": userName,
       "userId": _id,
       "address": address,
-      "attr":this.list[0]["attr"],
+      "attr": this.list[0]["attr"],
       "__v": 0
     }, httpOptions)
       .subscribe((response) => {
@@ -68,6 +68,7 @@ export class MyorderPage implements OnInit {
       })
 
   }
+  
   goBack() {
     this.navController.navigateBack(this.returnUrl);
   }

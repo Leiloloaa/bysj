@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { EventService } from '../services/event.service';
 import { StorageService } from '../services/storage.service'
+import { NavController } from '@ionic/angular';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class MyinfoPage implements OnInit {
 
   public userinfo: any = {};
 
-  constructor(public http: HttpClient, public storage: StorageService, public eventService: EventService) {
+  constructor(public http: HttpClient, public storage: StorageService, public eventService: EventService, public navController: NavController, ) {
 
     // 初始化用户信息
     var userinfo = this.storage.get('userinfo')
@@ -31,8 +32,6 @@ export class MyinfoPage implements OnInit {
         this.userinfo = ''
       }
     }
-
-
   }
 
   ngOnInit() {
@@ -63,13 +62,17 @@ export class MyinfoPage implements OnInit {
     //Add 'implements OnDestroy' to the class.
     // 用户点返回后 将数据提交到服务器
     console.log(this.userinfo);
-    // let api = "http://localhost:3001/api/users/" + this.userinfo._id;
-    // let data = { "userName": this.userinfo.userName, "userSex": this.userinfo.userSex, "school": this.userinfo.school, "address": this.userinfo.address, "userContent": this.userinfo.userContent };
-    // this.http.post(api, data).subscribe((data: any) => {
-    //   this.userinfo = data;
-    //   this.storage.set('userinfo', data)
-    // });
+    let api = "http://localhost:3001/api/users/" + this.userinfo._id;
+    let data = { "userName": this.userinfo.userName, "userSex": this.userinfo.userSex, "school": this.userinfo.school, "address": this.userinfo.address, "userContent": this.userinfo.userContent };
+    this.http.put(api, data).subscribe((data: any) => {
+      this.userinfo = data;
+      this.storage.remove('userinfo')
+      this.storage.set('userinfo', this.userinfo)
+    });
   }
 
+  goBack() {
+    this.navController.navigateBack('/tabs/tab4');
+  }
 
 }

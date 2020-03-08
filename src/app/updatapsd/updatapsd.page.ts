@@ -4,6 +4,7 @@ import { ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { UpdatapsdPageRoutingModule } from './updatapsd-routing.module';
+import { StorageService } from '../services/storage.service'
 
 @Component({
   selector: 'app-updatapsd',
@@ -14,20 +15,27 @@ export class UpdatapsdPage implements OnInit {
 
   public user: any[] = []
   public userId: string
-  constructor(public navCtrl: NavController, public toastController: ToastController, public router: ActivatedRoute, public http: HttpClient) { }
-
-  ngOnInit() {
-    this.router.params.subscribe((queryParams) => {
-      let userId = this.router.snapshot.queryParams["id"];
-      this.requestUser(userId);
-    })
+  public userinfo: any
+  constructor(public storage: StorageService, public navCtrl: NavController, public toastController: ToastController, public router: ActivatedRoute, public http: HttpClient) {
+    // 初始化用户信息
+    var userinfo = this.storage.get('userinfo')
+    if (userinfo instanceof Array) {
+      var userinfo = this.storage.get('userinfo')
+      if (userinfo && userinfo[0].userName) {
+        this.userinfo = userinfo[0]
+      } else {
+        this.userinfo = ''
+      }
+    } else {
+      if (userinfo && userinfo.userName) {
+        this.userinfo = userinfo
+      } else {
+        this.userinfo = ''
+      }
+    }
   }
 
-  requestUser(userId) {
-    let api = 'http://localhost:3001/usersdetails/' + userId
-    this.http.get(api).subscribe((data: any) => {
-      this.user = data;
-    })
+  ngOnInit() {
   }
 
   upDataPsd(username: HTMLInputElement, passwordNew: HTMLInputElement, password: HTMLInputElement) {
@@ -36,12 +44,14 @@ export class UpdatapsdPage implements OnInit {
     } else if (password.value !== passwordNew.value) {
       this.present1Toast();
     } else {
-      let userId = this.router.snapshot.queryParams["id"];
+      let userId = this.userinfo._id
       let api = "http://localhost:3001/api/users/" + userId;
       let data = { "userName": username.value, "userPsd": password.value };
-      this.http.post(api, data).subscribe((data: any) => {
+      this.http.put(api, data).subscribe((data: any) => {
         this.user = data;
       });
+      this.storage.remove('userinfo')
+      this.storage.set('userinfo', this.userinfo)
       this.goback()
     }
   }

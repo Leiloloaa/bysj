@@ -19,7 +19,7 @@ export class CartPage implements OnInit {
   public isCheckedAll: boolean = true
   public isEdit: boolean = false // 是否编辑
   public hasData: boolean = false // 是否有数据
-  constructor(public navController:NavController,public route: ActivatedRoute, public http: HttpClient, public storageService: StorageService, public connectService: ConnectService, public cartService: CartService) {
+  constructor(public navController: NavController, public route: ActivatedRoute, public http: HttpClient, public storageService: StorageService, public connectService: ConnectService, public cartService: CartService) {
   }
 
   // ionic 生命周期函数 ngInit 只会执行一次

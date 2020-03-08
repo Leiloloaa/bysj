@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
@@ -20,11 +20,9 @@ export class LoginPage implements OnInit {
   constructor(public activatedRoute: ActivatedRoute, public http: HttpClient, public toastController: ToastController, public navCtrl: NavController, public storage: StorageService, public eventService: EventService) { }
 
   ngOnInit() {
-
     this.activatedRoute.queryParams.subscribe((data: any) => {
       data.returnUrl ? this.returnUrl = data.returnUrl : this.returnUrl = '/tabs/tab4';
     })
-
   }
 
   doLogin() {
@@ -48,13 +46,10 @@ export class LoginPage implements OnInit {
           } else {
             this.presentToast();
           }
-
         })
         .catch(err => {
           console.log(err)
         });
-
-
     }
   }
 
